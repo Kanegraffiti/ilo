@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#9C5C2E"/>
+  <circle cx="256" cy="256" r="200" fill="#D37E2C"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Noto Sans', sans-serif" font-size="192" fill="#F4E7CD">Ì</text>
+</svg>
