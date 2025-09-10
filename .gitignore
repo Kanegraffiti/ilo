@@ -1,5 +1,5 @@
 node_modules
 .next
 test-results
-public/sw.js
+# public/sw.js is generated in build but included for development
 

@@ -1,13 +1,15 @@
-import Image from 'next/image';
 import React from 'react';
+import { Baloo_2 } from 'next/font/google';
+
+const baloo = Baloo_2({ subsets: ['latin'] });
 
 export default function BrandLogo({ size = 48 }: { size?: number }) {
   return (
-    <div className="flex items-center space-x-2">
-      <Image src="/brand/ilo-logo.svg" alt="Ìlọ̀ logo" width={size} height={size} />
-      <span className="text-2xl font-bold" style={{ fontFamily: 'Noto Serif' }}>
-        Ìlọ̀
-      </span>
-    </div>
+    <span
+      className={`${baloo.className} font-bold`}
+      style={{ fontSize: size }}
+    >
+      Ìlọ̀
+    </span>
   );
 }
