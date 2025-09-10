@@ -1,10 +1,16 @@
 import VocabList from '../../../../components/VocabList';
 
 async function fetchLesson(id: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ''}/api/lessons/${id}`, {
-    cache: 'no-store',
-  });
-  return res.json();
+  try {
+    const base = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const res = await fetch(`${base}/api/lessons/${id}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) throw new Error('Network');
+    return res.json();
+  } catch {
+    return { lesson: { title: 'Offline', objectives: [] }, media: [], vocab: [] };
+  }
 }
 
 export default async function LessonPage({ params }: { params: { id: string } }) {

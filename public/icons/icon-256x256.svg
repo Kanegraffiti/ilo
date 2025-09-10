@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <rect width="256" height="256" fill="#9C5C2E"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Noto Sans', sans-serif" font-size="96" fill="#F4E7CD">Ì</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#F4E7CD"/>
+  <ellipse cx="256" cy="256" rx="180" ry="120" fill="#2E7D32"/>
+  <ellipse cx="256" cy="256" rx="160" ry="100" fill="#66BB6A"/>
+  <circle cx="430" cy="256" r="60" fill="#66BB6A"/>
+  <circle cx="450" cy="236" r="12" fill="#000"/>
+  <ellipse cx="156" cy="356" rx="40" ry="30" fill="#66BB6A"/>
+  <ellipse cx="356" cy="356" rx="40" ry="30" fill="#66BB6A"/>
+  <ellipse cx="156" cy="156" rx="40" ry="30" fill="#66BB6A"/>
+  <ellipse cx="356" cy="156" rx="40" ry="30" fill="#66BB6A"/>
+  <polygon points="76,256 36,236 36,276" fill="#66BB6A"/>
+  <path d="M410 196 L470 156 L480 216 Z" fill="#D32F2F"/>
 </svg>
