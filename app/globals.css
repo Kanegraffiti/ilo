@@ -18,3 +18,15 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* Decorative layers must never block clicks */
+.bg-decor, .noise, .gradient, .backdrop, .overlay,
+.hero::before, .hero::after {
+  pointer-events: none !important;
+}
+
+/* Ensure primary interactive regions are above background */
+main, nav, .interactive, .hero .content, a, button {
+  position: relative;
+  z-index: 10;
+}
