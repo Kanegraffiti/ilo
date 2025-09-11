@@ -37,3 +37,24 @@ App supports offline caching of lessons and background sync for submissions. Ico
 
 Upload lesson media via Supabase dashboard to the `lesson-media` bucket.
 
+## WhatsApp Autopublisher
+
+A separate FastAPI bot allows teachers to create and publish lessons via WhatsApp.
+
+### Local Dev
+
+```bash
+cd bot
+uvicorn main:app --host 0.0.0.0 --port 8080
+```
+
+Expose the port if needed (e.g. Termux):
+
+```bash
+ngrok http 8080
+```
+
+Configure Meta's webhook using the verify token and subscribe to message events. Add tester numbers before sending commands.
+
+Ensure a private Supabase bucket named `lesson-media` exists. Never expose `SUPABASE_SERVICE_ROLE` to the frontend.
+
