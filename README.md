@@ -28,3 +28,7 @@ Tailwind color tokens are defined in `tailwind.config.js`:
 
 Deploy to [Vercel](https://vercel.com) with the default Next.js settings. Ensure `NEXT_PUBLIC_BASE_URL` is set. PWA manifest and service worker reside in `public/` and are generated on `pnpm build`.
 
+### Debug clicks
+
+Set `NEXT_PUBLIC_DEBUG_CLICKS=1` to visualize which element receives clicks. When enabled, the clicked element briefly outlines and logs its tag and class to the console. Disable this flag in production.
+

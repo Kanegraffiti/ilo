@@ -13,7 +13,7 @@ export default function HomePage() {
   const { data, content } = matter(fs.readFileSync(homePath, 'utf8'));
   const bullets = content.trim().split('•').map((s) => s.trim());
   return (
-    <main>
+    <main className="relative">
       <Hero title={data.title} tagline={data.tagline} bullets={bullets} />
       <FeaturesGrid />
       <HowItWorks />
