@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 600" preserveAspectRatio="xMidYMid meet">
+  <rect width="300" height="600" rx="40" fill="#FFF8EF" stroke="#1C7C54" stroke-width="4"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Inter" font-size="24" fill="#1C7C54">Screen 3</text>
+</svg>
