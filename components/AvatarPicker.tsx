@@ -5,7 +5,7 @@ import { Button } from './ui/Button';
 const avatars = ['🐢', '🦊', '🐼', '🐵', '🐰', '🐸'];
 
 interface AvatarPickerProps {
-  onSelect: (emoji: string) => void;
+  onSelect?: (emoji: string) => void;
 }
 
 export default function AvatarPicker({ onSelect }: AvatarPickerProps) {
@@ -21,7 +21,7 @@ export default function AvatarPicker({ onSelect }: AvatarPickerProps) {
           aria-label={`Choose avatar ${a}`}
           onClick={() => {
             setSelected(a);
-            onSelect(a);
+            onSelect?.(a);
           }}
         >
           {a}
