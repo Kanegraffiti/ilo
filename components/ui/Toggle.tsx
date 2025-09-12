@@ -19,7 +19,7 @@ export function Toggle({ checked, onChange, label, className }: ToggleProps) {
       aria-checked={checked}
       onClick={() => onChange(!checked)}
       className={cn('flex items-center gap-2 min-h-[44px]', className)}
-      {...press}
+      {...(press as any)}
     >
       <span className="sr-only">{label}</span>
       <motion.span

@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-cream border-t mt-12">
       <div className="container mx-auto p-6 grid gap-4 md:grid-cols-3 text-sm">
         <div>
-          <Image src="/logo/ilo-wordmark.svg" alt="Ìlọ̀" width={80} height={24} />
+          <Image src="/logo/tortoise.svg" alt="Ìlọ̀" width={40} height={40} />
           <p className="mt-2">© {new Date().getFullYear()} Ìlọ̀.</p>
         </div>
         <div className="flex flex-col space-y-2">
