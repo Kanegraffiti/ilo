@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -24,7 +26,7 @@ export default function NavBar() {
           </Link>
           <Link
             href="/pricing"
-            className="px-4 py-2 rounded-lg bg-amber-700 text-white focus:outline-none focus:ring"
+            className={cn(buttonVariants({ size: 'sm' }))}
           >
             Try Ìlọ̀
           </Link>
@@ -49,7 +51,7 @@ export default function NavBar() {
           </Link>
           <Link
             href="/pricing"
-            className="block w-full text-center px-4 py-2 rounded-lg bg-amber-700 text-white"
+            className={cn(buttonVariants(), 'w-full text-center')}
             onClick={() => setOpen(false)}
           >
             Try Ìlọ̀
@@ -58,7 +60,7 @@ export default function NavBar() {
             href="https://wa.me/234000000000"
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center px-4 py-2 rounded-lg border border-amber-700"
+            className={cn(buttonVariants({ variant: 'outline' }), 'w-full text-center')}
             onClick={() => setOpen(false)}
           >
             WhatsApp

@@ -28,14 +28,14 @@ export default function Hero({ title, tagline, bullets }: Props) {
           <div className="flex gap-4 justify-center md:justify-start mt-4">
             <Link
               href="/features"
-              className="px-5 py-3 rounded-xl bg-amber-700 text-white focus:outline-none focus:ring"
+              className="px-5 py-3 rounded-full bg-brand text-white font-bold hover:bg-brand/90 focus:outline-none focus:ring"
               onClick={() => track('cta_features')}
             >
               Get Started
             </Link>
             <Link
               href="/pricing"
-              className="px-5 py-3 rounded-xl border border-amber-700 focus:outline-none focus:ring"
+              className="px-5 py-3 rounded-full border border-brand text-brand font-bold hover:bg-brand/10 focus:outline-none focus:ring"
               onClick={() => track('cta_pricing')}
             >
               See Plans
