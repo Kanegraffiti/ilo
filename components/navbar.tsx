@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 export default function NavBar() {
@@ -13,10 +13,10 @@ export default function NavBar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
         <Link href="/" className="flex items-center space-x-2 font-bold">
           <Image
-            src="/logo/ilo-wordmark.svg"
+            src="/logo/tortoise.svg"
             alt="Ìlọ̀"
-            width={80}
-            height={24}
+            width={40}
+            height={40}
             className="pointer-events-none select-none"
           />
         </Link>
@@ -26,7 +26,7 @@ export default function NavBar() {
           </Link>
           <Link
             href="/pricing"
-            className={cn(buttonVariants({ size: 'sm' }))}
+            className={cn(buttonVariants({ size: 'md' }))}
           >
             Try Ìlọ̀
           </Link>
@@ -60,7 +60,7 @@ export default function NavBar() {
             href="https://wa.me/234000000000"
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(buttonVariants({ variant: 'outline' }), 'w-full text-center')}
+            className={cn(buttonVariants({ variant: 'ghost' }), 'w-full text-center')}
             onClick={() => setOpen(false)}
           >
             WhatsApp

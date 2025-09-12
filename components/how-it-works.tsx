@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
 
 const steps = [
   { title: 'Teacher', text: 'Record a lesson.' },

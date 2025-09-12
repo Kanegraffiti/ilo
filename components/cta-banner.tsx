@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { useAnalytics } from '@/lib/analytics';
 
 export default function CTABanner() {

@@ -42,7 +42,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }))}
         {...press}
-        {...props}
+        {...(props as any)}
       >
         {iconLeft && <span className="mr-2">{iconLeft}</span>}
         {children}
