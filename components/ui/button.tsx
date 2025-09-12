@@ -1,20 +1,22 @@
+'use client';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-full text-base font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none',
+  'inline-flex items-center justify-center rounded-2xl text-base font-bold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50 disabled:pointer-events-none min-h-[44px]',
   {
     variants: {
       variant: {
-        default: 'bg-brand text-white hover:bg-brand/90',
-        secondary: 'bg-accent text-ink hover:bg-accent/90',
-        outline: 'border border-brand text-brand hover:bg-brand/10',
+        default: 'bg-primary text-paper hover:bg-primary/90',
+        secondary: 'bg-secondary text-paper hover:bg-secondary/90',
+        outline: 'border border-primary text-primary hover:bg-primary/10',
       },
       size: {
-        default: 'h-10 px-6',
-        sm: 'h-8 px-4 text-sm',
-        lg: 'h-12 px-8 text-lg',
+        default: 'px-6',
+        sm: 'px-4 text-sm',
+        lg: 'px-8 text-lg',
       },
     },
     defaultVariants: {
@@ -28,12 +30,16 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
+const MotionButton = motion.button;
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     return (
-      <button
+      <MotionButton
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }))}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
         {...props}
       />
     );

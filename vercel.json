@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "app/api/**/route.ts": { "runtime": "edge" },
+    "app/api/profile/**/route.ts": { "runtime": "nodejs18.x" },
+    "app/api/child/**/route.ts": { "runtime": "nodejs18.x" },
+    "app/api/score/commit/route.ts": { "runtime": "nodejs18.x" },
+    "app/api/leaderboards/rebuild/route.ts": { "runtime": "nodejs18.x" }
+  }
+}

@@ -17,12 +17,13 @@ Marketing copy lives in `/content`. Update markdown, YAML, or JSON files and red
 
 ### Brand tokens
 
-Tailwind color tokens are defined in `tailwind.config.js`:
+Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS variables:
 
-- `brand` – `#1C7C54`
-- `accent` – `#FFB703`
-- `cream` – `#FFF8EF`
-- `ink` – `#0F172A`
+- `primary` – `#9C5C2E`
+- `secondary` – `#4A5B3F`
+- `accent` – `#D37E2C`
+- `ink` – `#2C221B`
+- `paper` – `#F4E7CD`
 
 ### Deployment
 
@@ -31,4 +32,29 @@ Deploy to [Vercel](https://vercel.com) with the default Next.js settings. Ensure
 ### Debug clicks
 
 Set `NEXT_PUBLIC_DEBUG_CLICKS=1` to visualize which element receives clicks. When enabled, the clicked element briefly outlines and logs its tag and class to the console. Disable this flag in production.
+
+## Accounts & Leaderboards
+
+Environment variables:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `LEADERBOARD_ADMIN_TOKEN`
+
+Run migrations:
+
+```
+psql $DATABASE_URL -f supabase/010_accounts_profiles_leaderboards.sql
+```
+
+This creates profiles, child profiles, progress tracking, quiz results, and leaderboard tables with row level security policies.
+
+To seed a demo user:
+
+```
+pnpm seed
+```
+
+API routes use Vercel's Edge runtime where possible; write operations fall back to Node.js runtimes. Rate limiting is provided via a lightweight in-memory helper in development.
 

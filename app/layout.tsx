@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import React from 'react';
 import { Inter, Nunito } from 'next/font/google';
+import InstallPrompt from '@/components/InstallPrompt';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 const nunito = Nunito({ subsets: ['latin'], variable: '--font-nunito', display: 'swap' });
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <InstallPrompt />
         <script
           dangerouslySetInnerHTML={{
             __html:
