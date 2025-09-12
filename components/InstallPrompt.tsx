@@ -1,49 +1,51 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Button } from './ui/Button';
+import { Card } from './ui/Card';
+import { usePageEnter } from '@/lib/anim';
 
-let deferredPrompt: any = null;
-if (typeof window !== 'undefined') {
-  window.addEventListener('beforeinstallprompt', (e: any) => {
-    e.preventDefault();
-    deferredPrompt = e;
-  });
-  window.addEventListener('appinstalled', () => {
-    deferredPrompt = null;
-  });
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<unknown>;
 }
 
 export default function InstallPrompt() {
-  const [promptEvent, setPromptEvent] = useState<any>(null);
-  const [installed, setInstalled] = useState(false);
+  const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
+  const [visible, setVisible] = useState(false);
+  const anim = usePageEnter();
 
   useEffect(() => {
-    const before = (e: any) => {
+    const handler = (e: Event) => {
+      const evt = e as BeforeInstallPromptEvent;
       e.preventDefault();
-      deferredPrompt = e;
-      setPromptEvent(e);
+      setDeferred(evt);
+      setVisible(true);
     };
-    if (deferredPrompt) setPromptEvent(deferredPrompt);
-    const installedHandler = () => setInstalled(true);
-    window.addEventListener('beforeinstallprompt', before);
-    window.addEventListener('appinstalled', installedHandler);
-    return () => {
-      window.removeEventListener('beforeinstallprompt', before);
-      window.removeEventListener('appinstalled', installedHandler);
-    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
-  if (installed || !promptEvent) return null;
+  if (!visible) return null;
 
   const install = async () => {
-    promptEvent.prompt();
-    await promptEvent.userChoice;
-    deferredPrompt = null;
-    setPromptEvent(null);
+    await deferred?.prompt();
+    await deferred?.userChoice;
+    setVisible(false);
   };
 
   return (
-    <button className="px-4 py-2 bg-accent text-paper" onClick={install} aria-label="Install app">
-      Install App
-    </button>
+    <AnimatePresence>
+      {visible && (
+        <motion.div {...anim} className="fixed bottom-4 left-4 right-4 z-40">
+          <Card className="flex items-center justify-between">
+            <span>Install Ìlọ̀?</span>
+            <Button onClick={install} size="md">
+              Install
+            </Button>
+          </Card>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

@@ -1,11 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import React from 'react';
-import { Inter, Nunito } from 'next/font/google';
+import { Noto_Sans, Noto_Serif } from 'next/font/google';
 import InstallPrompt from '@/components/InstallPrompt';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
-const nunito = Nunito({ subsets: ['latin'], variable: '--font-nunito', display: 'swap' });
+const sans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
+const serif = Noto_Serif({ subsets: ['latin'], variable: '--font-serif', display: 'swap' });
 
 export const metadata: Metadata = {
   title: 'Ìlọ̀',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="icon" href="/icons/icon-192x192.svg" type="image/svg+xml" />
