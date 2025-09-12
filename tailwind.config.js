@@ -4,15 +4,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Updated to a Duolingo-inspired palette
-        brand: '#58CC02',
-        accent: '#1CB0F6',
-        cream: '#FFF8EF',
-        ink: '#0F172A',
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        ink: 'var(--color-ink)',
+        paper: 'var(--color-paper)',
+        brand: 'var(--color-primary)',
+        cream: 'var(--color-paper)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         display: ['var(--font-nunito)', 'sans-serif'],
+      },
+      borderRadius: {
+        '2xl': 'var(--radius-xl)',
       },
     },
   },

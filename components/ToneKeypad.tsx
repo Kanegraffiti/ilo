@@ -28,7 +28,7 @@ export default function ToneKeypad({ targetId }: { targetId?: string }) {
         <button
           key={c}
           aria-label={`Insert ${c}`}
-          className="w-11 h-11 flex items-center justify-center rounded bg-accent text-paper"
+          className="w-12 h-12 min-w-[48px] min-h-[48px] flex items-center justify-center rounded-2xl bg-accent text-paper"
           onClick={() => insert(c)}
         >
           {c}
