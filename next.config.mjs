@@ -1,10 +1,13 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {},
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.supabase.co' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
+  },
+  experimental: { optimizeCss: true },
 };
 
 export default nextConfig;

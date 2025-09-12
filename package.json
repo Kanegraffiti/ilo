@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "vercel-check": "node ./scripts/check-env.mjs",
+    "build": "pnpm vercel-check && next build && node ./scripts/build-sw.mjs",
     "start": "next start",
     "lint": "eslint .",
     "seed": "ts-node scripts/seed.ts",
@@ -44,5 +45,8 @@
     "typescript": "^5.2.2",
     "workbox-build": "^7.0.0",
     "workbox-cli": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=18.18 <23"
   }
 }
