@@ -2,24 +2,17 @@
 import React, { useState } from 'react';
 import ToneKeypad from './ToneKeypad';
 
-type MCQ = {
-  id: string;
-  type: 'mcq';
-  question: string;
-  options: string[];
-  answer: string;
-};
+export type QuizItem =
+  | { id: string; type: 'mcq'; question: string; options: string[]; answer: string }
+  | { id: string; type: 'text'; question: string; answer: string };
 
-type TextQ = {
-  id: string;
-  type: 'text';
-  question: string;
-  answer: string;
-};
-
-export type QuizItem = MCQ | TextQ;
-
-export default function QuizBlock({ items }: { items: QuizItem[] }) {
+export default function QuizBlock({
+  items,
+  onComplete,
+}: {
+  items: QuizItem[];
+  onComplete?: (score: number, answers: Record<string, string>) => void;
+}) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [result, setResult] = useState<Record<string, boolean>>({});
 
@@ -29,6 +22,8 @@ export default function QuizBlock({ items }: { items: QuizItem[] }) {
       res[item.id] = answers[item.id]?.trim().toLowerCase() === item.answer.trim().toLowerCase();
     }
     setResult(res);
+    const score = items.length ? Object.values(res).filter(Boolean).length / items.length : 0;
+    onComplete?.(score, answers);
   };
 
   return (
@@ -54,10 +49,11 @@ export default function QuizBlock({ items }: { items: QuizItem[] }) {
           ) : (
             <div>
               <input
+                id={`input-${q.id}`}
                 className="border p-2 w-full mb-2"
                 onChange={(e) => setAnswers({ ...answers, [q.id]: e.target.value })}
               />
-              <ToneKeypad />
+              <ToneKeypad targetId={`input-${q.id}`} />
             </div>
           )}
           {result[q.id] !== undefined && (

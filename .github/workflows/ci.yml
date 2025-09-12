@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test
+#  seed:
+#    if: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: pnpm/action-setup@v2
+#        with:
+#          version: 8
+#      - run: pnpm install --frozen-lockfile
+#      - run: pnpm ts-node scripts/seed-more.ts
