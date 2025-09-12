@@ -2,8 +2,6 @@ import { supabaseServer } from '@/lib/supabaseServer';
 import { scoreCommitSchema } from '@/lib/zodSchemas';
 import { rateLimit } from '@/lib/rateLimit';
 
-export const runtime = 'nodejs';
-
 export async function POST(req: Request) {
   const ip = req.headers.get('x-forwarded-for') || 'anon';
   if (!rateLimit(ip).ok) return new Response('Too many requests', { status: 429 });
