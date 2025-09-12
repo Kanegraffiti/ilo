@@ -3,21 +3,34 @@ import React from 'react';
 
 const chars = ['á', 'à', 'ạ', 'ẹ', 'ọ', 'ṣ', 'gb'];
 
-export default function ToneKeypad() {
+export default function ToneKeypad({ targetId }: { targetId?: string }) {
   const insert = (ch: string) => {
-    const el = document.activeElement as HTMLInputElement | HTMLTextAreaElement | null;
-    if (!el || !(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement)) return;
+    let el: HTMLInputElement | HTMLTextAreaElement | null = null;
+    if (targetId) {
+      const t = document.getElementById(targetId);
+      if (t instanceof HTMLInputElement || t instanceof HTMLTextAreaElement) el = t;
+    } else {
+      const active = document.activeElement;
+      if (active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement) el = active;
+    }
+    if (!el) return;
     const start = el.selectionStart || 0;
     const end = el.selectionEnd || 0;
     const val = el.value;
     el.value = val.slice(0, start) + ch + val.slice(end);
     el.selectionStart = el.selectionEnd = start + ch.length;
     el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.focus();
   };
   return (
     <div className="flex flex-wrap gap-2 p-2" aria-label="Yoruba tones keypad">
       {chars.map((c) => (
-        <button key={c} className="px-2 py-1 rounded bg-accent text-paper" onClick={() => insert(c)}>
+        <button
+          key={c}
+          aria-label={`Insert ${c}`}
+          className="w-11 h-11 flex items-center justify-center rounded bg-accent text-paper"
+          onClick={() => insert(c)}
+        >
           {c}
         </button>
       ))}
