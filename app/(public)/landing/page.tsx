@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import InstallPrompt from '@/components/InstallPrompt';
 import { motion } from 'framer-motion';
 import { usePageEnter } from '@/lib/anim';
 
@@ -21,7 +20,6 @@ export default function LandingPage() {
           </Card>
         ))}
       </div>
-      <InstallPrompt />
     </motion.div>
   );
 }

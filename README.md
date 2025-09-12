@@ -1,6 +1,6 @@
-# Ìlọ̀ Yoruba Learning PWA
+# Ìlọ̀ Yoruba Learning App
 
-A progressive web app for learning Yoruba built with Next.js, Supabase, and Workbox.
+A web app for learning Yoruba built with Next.js and Supabase.
 
 ## Quick start
 
@@ -27,7 +27,7 @@ Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS vari
 
 ## Deploy to Vercel
 
-1. In Vercel project settings, add environment variables:
+  1. In Vercel project settings, add environment variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - `NEXT_PUBLIC_BASE_URL`
@@ -37,7 +37,6 @@ Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS vari
    - Install Command: `pnpm install --frozen-lockfile`
    - Build Command: `pnpm build`
 
-PWA assets (`sw.js`, `manifest.webmanifest`, icons) live in `public/` and are generated on `pnpm build`.
 
 ### Debug clicks
 
