@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "vercel-check": "node ./scripts/check-env.mjs",
-    "build": "pnpm vercel-check && next build && node ./scripts/build-sw.mjs",
+    "build": "pnpm vercel-check && next build",
     "start": "next start",
     "lint": "eslint .",
     "seed": "ts-node scripts/seed.ts",
@@ -18,7 +18,6 @@
     "next": "^14.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "workbox-window": "^7.0.0",
     "zod": "^3.22.4",
     "framer-motion": "^10.16.4",
     "class-variance-authority": "^0.7.0",
@@ -43,9 +42,7 @@
     "prettier": "^3.0.3",
     "tailwindcss": "^3.3.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
-    "workbox-build": "^7.0.0",
-    "workbox-cli": "^7.0.0"
+    "typescript": "^5.2.2"
   },
   "engines": {
     "node": ">=18.18 <23"
