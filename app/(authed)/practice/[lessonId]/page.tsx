@@ -1,55 +1,52 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import AudioRecorder from '@/components/AudioRecorder';
-import { supabaseBrowser } from '@/lib/supabaseBrowser';
+import { useState } from 'react';
+import { Button } from '@/components/ui/Button';
+import ToneKeypad from '@/components/ToneKeypad';
+import { ToastProvider, useToast } from '@/components/ui/Toast';
+import ConfettiOnce from '@/components/ConfettiOnce';
 
-export default function PracticePage({ params }: { params: { lessonId: string } }) {
-  const [lesson, setLesson] = useState<any>();
-  const [blob, setBlob] = useState<Blob | null>(null);
-  const [toast, setToast] = useState('');
-
-  useEffect(() => {
-    const load = async () => {
-      const supabase = supabaseBrowser();
-      const { data } = await supabase
-        .from('lessons')
-        .select('id,title,objectives')
-        .eq('id', params.lessonId)
-        .single();
-      setLesson(data);
-    };
-    load();
-  }, [params.lessonId]);
-
-  const submit = async () => {
-    if (!blob) return;
-    const fd = new FormData();
-    fd.append('file', blob, 'recording.webm');
-    fd.append('data', JSON.stringify({ lesson_id: lesson.id, type: 'voice', payload: {} }));
-    try {
-      const res = await fetch('/api/submissions', { method: 'POST', body: fd });
-      if (!res.ok) throw new Error('failed');
-      setToast('Uploaded');
-    } catch (e) {
-      setToast('Saved offline – will upload when online');
-    }
-  };
-
-  if (!lesson) return <p className="p-4">Loading…</p>;
-
+function PracticeContent() {
+  const [tab, setTab] = useState<'pron' | 'quiz'>('pron');
+  const { add } = useToast();
+  const [confetti, setConfetti] = useState(false);
   return (
     <div className="p-4 space-y-4">
-      <h1 className="text-xl font-bold">{lesson.title}</h1>
-      <ul className="list-disc pl-6">
-        {lesson.objectives?.map((o: string) => (
-          <li key={o}>{o}</li>
-        ))}
-      </ul>
-      <AudioRecorder onRecorded={setBlob} />
-      <button className="px-4 py-2 bg-primary text-paper" onClick={submit} aria-label="Submit recording">
-        Submit
-      </button>
-      {toast && <p role="status">{toast}</p>}
+      <div className="flex gap-2">
+        <Button variant={tab === 'pron' ? 'primary' : 'secondary'} onClick={() => setTab('pron')}>
+          Pronunciation
+        </Button>
+        <Button variant={tab === 'quiz' ? 'primary' : 'secondary'} onClick={() => setTab('quiz')}>
+          Quiz
+        </Button>
+      </div>
+      {tab === 'pron' ? (
+        <div className="flex flex-col items-center gap-4">
+          <Button size="xl" onClick={() => add('🎉 Great job! Saved.')}>🎙️</Button>
+          <ToneKeypad />
+        </div>
+      ) : (
+        <div className="space-y-4">
+          <p>Question?</p>
+          <ToneKeypad />
+          <Button
+            onClick={() => {
+              add('🎉 Great job! Saved.');
+              setConfetti(true);
+            }}
+          >
+            Submit
+          </Button>
+        </div>
+      )}
+      <ConfettiOnce trigger={confetti} />
     </div>
+  );
+}
+
+export default function PracticePage() {
+  return (
+    <ToastProvider>
+      <PracticeContent />
+    </ToastProvider>
   );
 }

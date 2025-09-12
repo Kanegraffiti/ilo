@@ -1,9 +1,13 @@
 'use client';
-import React from 'react';
+import { Button } from './ui/Button';
 
-const chars = ['á', 'à', 'ạ', 'ẹ', 'ọ', 'ṣ', 'gb'];
+const keys = ['á', 'à', 'ạ', 'ẹ', 'ọ', 'ṣ', 'gb'];
 
-export default function ToneKeypad({ targetId }: { targetId?: string }) {
+interface ToneKeypadProps {
+  targetId?: string;
+}
+
+export default function ToneKeypad({ targetId }: ToneKeypadProps) {
   const insert = (ch: string) => {
     let el: HTMLInputElement | HTMLTextAreaElement | null = null;
     if (targetId) {
@@ -23,16 +27,17 @@ export default function ToneKeypad({ targetId }: { targetId?: string }) {
     el.focus();
   };
   return (
-    <div className="flex flex-wrap gap-2 p-2" aria-label="Yoruba tones keypad">
-      {chars.map((c) => (
-        <button
+    <div className="grid grid-cols-4 gap-2" aria-label="Yorùbá tones keypad">
+      {keys.map((c) => (
+        <Button
           key={c}
-          aria-label={`Insert ${c}`}
-          className="w-12 h-12 min-w-[48px] min-h-[48px] flex items-center justify-center rounded-2xl bg-accent text-paper"
+          variant="secondary"
+          size="lg"
           onClick={() => insert(c)}
+          aria-label={`Insert ${c}`}
         >
           {c}
-        </button>
+        </Button>
       ))}
     </div>
   );

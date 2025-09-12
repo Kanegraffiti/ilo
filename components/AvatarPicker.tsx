@@ -1,27 +1,31 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Button } from './ui/Button';
 
-const avatars = ['🐢','🦊','🐼','🐵'];
+const avatars = ['🐢', '🦊', '🐼', '🐵', '🐰', '🐸'];
 
-export default function AvatarPicker({ onSelect }: { onSelect: (emoji: string) => void }) {
-  const [selected, setSelected] = useState<string>('');
+interface AvatarPickerProps {
+  onSelect: (emoji: string) => void;
+}
+
+export default function AvatarPicker({ onSelect }: AvatarPickerProps) {
+  const [selected, setSelected] = useState('');
   return (
-    <div className="flex gap-2" aria-label="Avatar choices">
+    <div className="grid grid-cols-3 gap-4" aria-label="Avatar choices">
       {avatars.map((a) => (
-        <motion.button
+        <Button
           key={a}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+          variant={selected === a ? 'primary' : 'secondary'}
+          size="lg"
+          aria-pressed={selected === a}
+          aria-label={`Choose avatar ${a}`}
           onClick={() => {
             setSelected(a);
             onSelect(a);
           }}
-          aria-pressed={selected === a}
-          className={`w-12 h-12 rounded-full text-2xl flex items-center justify-center bg-paper border ${selected===a?'border-accent':'border-transparent'}`}
         >
           {a}
-        </motion.button>
+        </Button>
       ))}
     </div>
   );
