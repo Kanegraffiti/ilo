@@ -25,9 +25,19 @@ Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS vari
 - `ink` – `#2C221B`
 - `paper` – `#F4E7CD`
 
-### Deployment
+## Deploy to Vercel
 
-Deploy to [Vercel](https://vercel.com) with the default Next.js settings. Ensure `NEXT_PUBLIC_BASE_URL` is set. PWA manifest and service worker reside in `public/` and are generated on `pnpm build`.
+1. In Vercel project settings, add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_BASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY` (server only, never exposed to the client)
+   - `NEXT_TELEMETRY_DISABLED=1` *(optional)*
+2. Build settings:
+   - Install Command: `pnpm install --frozen-lockfile`
+   - Build Command: `pnpm build`
+
+PWA assets (`sw.js`, `manifest.webmanifest`, icons) live in `public/` and are generated on `pnpm build`.
 
 ### Debug clicks
 
