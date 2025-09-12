@@ -8,7 +8,7 @@ export default function ProfilePage() {
         <h1 className="text-xl font-bold mb-2">Profile</h1>
         <p>Ada</p>
       </Card>
-      <AvatarPicker onSelect={() => {}} />
+      <AvatarPicker />
     </div>
   );
 }

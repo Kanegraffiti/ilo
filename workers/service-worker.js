@@ -3,7 +3,7 @@ import { registerRoute, NavigationRoute } from 'workbox-routing';
 import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
 
-// self.__WB_MANIFEST is injected by workbox at build time
+// The manifest array is injected by workbox at build time
 precacheAndRoute(self.__WB_MANIFEST);
 
 // Cache-first for static assets
