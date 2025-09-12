@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: '#1C7C54',
-        accent: '#FFB703',
+        // Updated to a Duolingo-inspired palette
+        brand: '#58CC02',
+        accent: '#1CB0F6',
         cream: '#FFF8EF',
         ink: '#0F172A',
       },
