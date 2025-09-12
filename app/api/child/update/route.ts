@@ -2,8 +2,6 @@ import { supabaseServer } from '@/lib/supabaseServer';
 import { childSchema } from '@/lib/zodSchemas';
 import { z } from 'zod';
 
-export const runtime = 'nodejs';
-
 export async function POST(req: Request) {
   const body = await req.json();
   const payload = childSchema.extend({ id: z.string().uuid() }).parse(body);
