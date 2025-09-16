@@ -9,19 +9,19 @@ import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef, useMemo } from 'react';
 
 const baseStyles =
-  'relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl font-semibold transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-paper min-h-[44px] select-none shadow-md';
+  'relative inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-2xl font-semibold shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface)]';
 
 export const buttonVariants = cva(baseStyles, {
   variants: {
     variant: {
       primary:
-        'bg-primary text-paper hover:bg-primary/90 active:bg-primary/95 disabled:bg-primary/60 disabled:text-paper/80',
+        'bg-primary c-on-primary hover:bg-primary/90 active:bg-primary/95 disabled:pointer-events-none disabled:opacity-60',
       secondary:
-        'bg-secondary text-paper hover:bg-secondary/90 active:bg-secondary/95 disabled:bg-secondary/50 disabled:text-paper/75',
+        'bg-secondary c-on-secondary hover:bg-secondary/90 active:bg-secondary/95 disabled:pointer-events-none disabled:opacity-60',
       ghost:
-        'bg-transparent text-primary shadow-none hover:bg-primary/10 active:bg-primary/20 disabled:text-primary/50',
+        'border border-primary/60 bg-transparent c-on-paper shadow-none hover:bg-primary/10 active:bg-primary/15 disabled:pointer-events-none disabled:opacity-60',
       danger:
-        'bg-red-600 text-white hover:bg-red-500 active:bg-red-600/80 disabled:bg-red-600/40',
+        'bg-red-600 text-white hover:bg-red-500 active:bg-red-600/90 disabled:pointer-events-none disabled:opacity-60',
     },
     size: {
       md: 'px-4 py-2.5 text-base',

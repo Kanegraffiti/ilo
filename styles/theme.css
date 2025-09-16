@@ -1,22 +1,71 @@
 :root {
   --color-primary: #9C5C2E;
+  --color-on-primary: #FFFFFF;
   --color-secondary: #4A5B3F;
+  --color-on-secondary: #FFFFFF;
   --color-accent: #D37E2C;
-  --color-ink: #2C221B;
+  --color-on-accent: #1F140D;
   --color-paper: #F4E7CD;
+  --color-on-paper: #2C221B;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #2C221B;
+  --color-ink: var(--color-on-paper);
 
   --radius-xl: 1.25rem;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.1);
 
-  --font-ui: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
-  --font-title: "Noto Serif", Georgia, serif;
+  --font-ui: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-title: 'Noto Serif', Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-paper: #2A241E;
-    --color-ink: #F3EBDD;
+    --color-on-paper: #F3EBDD;
+    --color-surface: #2F281F;
+    --color-on-surface: #F3EBDD;
+    --color-on-accent: #F3EBDD;
   }
+}
+
+.c-on-paper {
+  color: var(--color-on-paper);
+}
+
+.c-on-surface {
+  color: var(--color-on-surface);
+}
+
+.c-on-primary {
+  color: var(--color-on-primary);
+}
+
+.c-on-secondary {
+  color: var(--color-on-secondary);
+}
+
+.c-on-accent {
+  color: var(--color-on-accent);
+}
+
+.bg-paper {
+  background: var(--color-paper);
+}
+
+.bg-surface {
+  background: var(--color-surface);
+}
+
+.bg-primary {
+  background: var(--color-primary);
+}
+
+.bg-secondary {
+  background: var(--color-secondary);
+}
+
+.bg-accent {
+  background: var(--color-accent);
 }

@@ -21,32 +21,41 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
   return (
     <div className="space-y-2">
       {label ? (
-        <label htmlFor={selectId} className="block text-base font-semibold text-ink">
+        <label htmlFor={selectId} className="block text-base font-semibold c-on-surface">
           {label}
         </label>
       ) : null}
       <div
         className={cn(
-          'relative flex min-h-[56px] items-center rounded-2xl border border-ink/10 bg-white/90 px-4 text-lg shadow-sm focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/30',
-          errorText ? 'border-red-500 focus-within:ring-red-200' : null,
+          'relative flex min-h-[56px] items-center rounded-2xl border border-[color:var(--color-on-surface)]/10 bg-surface px-4 text-lg shadow-sm transition focus-within:border-primary focus-within:ring-2 focus-within:ring-[var(--color-accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-surface)]',
+          errorText ? 'border-red-600 focus-within:border-red-600 focus-within:ring-red-500/40' : null,
         )}
       >
         <select
           ref={ref}
           id={selectId}
-          className={cn('w-full appearance-none bg-transparent pr-8 text-lg text-ink focus:outline-none', className)}
+          className={cn(
+            'w-full appearance-none bg-transparent pr-8 text-lg c-on-surface focus:outline-none',
+            className,
+          )}
           aria-describedby={descriptionId}
           aria-invalid={Boolean(errorText)}
           {...props}
         >
           {children}
         </select>
-        <span aria-hidden="true" className="pointer-events-none absolute right-4 text-ink/50">
+        <span aria-hidden="true" className="pointer-events-none absolute right-4 text-[color:var(--color-on-surface)]/70">
           ▾
         </span>
       </div>
       {helperText || errorText ? (
-        <p id={descriptionId} className={cn('text-sm', errorText ? 'text-red-600' : 'text-ink/60')}>
+        <p
+          id={descriptionId}
+          className={cn(
+            'text-sm',
+            errorText ? 'text-red-700 dark:text-red-400' : 'text-[color:var(--color-on-surface)]/80',
+          )}
+        >
           {errorText ?? helperText}
         </p>
       ) : null}
