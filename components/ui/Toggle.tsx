@@ -1,40 +1,59 @@
 'use client';
-import { motion } from 'framer-motion';
+
 import { usePressable } from '@/lib/anim';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import type { ButtonHTMLAttributes } from 'react';
+import { forwardRef, useId } from 'react';
 
-interface ToggleProps {
+export interface ToggleProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'> {
   checked: boolean;
-  onChange: (checked: boolean) => void;
+  onCheckedChange: (checked: boolean) => void;
   label: string;
-  className?: string;
+  helperText?: string;
 }
 
-export function Toggle({ checked, onChange, label, className }: ToggleProps) {
-  const press = usePressable();
+export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle(
+  { checked, onCheckedChange, label, helperText, className, id, ...props },
+  ref,
+) {
+  const generatedId = useId();
+  const toggleId = id ?? generatedId;
+  const pressable = usePressable();
+
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      onClick={() => onChange(!checked)}
-      className={cn('flex items-center gap-2 min-h-[44px]', className)}
-      {...(press as any)}
-    >
-      <span className="sr-only">{label}</span>
-      <motion.span
-        className={cn(
-          'w-10 h-6 rounded-full p-1',
-          checked ? 'bg-primary' : 'bg-ink/20'
-        )}
-      >
-        <motion.span
-          className="block h-4 w-4 rounded-full bg-paper"
-          animate={{ x: checked ? 16 : 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        />
-      </motion.span>
-      <span className="text-lg text-ink">{label}</span>
-    </button>
+    <div className="space-y-2">
+      <div className="flex items-center justify-between gap-4">
+        <span id={`${toggleId}-label`} className="text-base font-semibold text-ink">
+          {label}
+        </span>
+        <motion.div {...pressable}>
+          <button
+            ref={ref}
+            type="button"
+            role="switch"
+            aria-checked={checked}
+            aria-labelledby={`${toggleId}-label`}
+            onClick={() => onCheckedChange(!checked)}
+            className={cn(
+              'relative inline-flex h-11 w-20 items-center rounded-full border border-transparent px-1 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(211,126,44,0.4)] focus-visible:ring-offset-2 focus-visible:ring-offset-paper',
+              checked ? 'bg-primary/90' : 'bg-ink/15',
+              className,
+            )}
+            {...props}
+          >
+            <span className="sr-only">Toggle {label}</span>
+            <span
+              aria-hidden="true"
+              className={cn(
+                'block h-9 w-9 rounded-full bg-paper shadow-md transition-transform',
+                checked ? 'translate-x-9' : 'translate-x-0',
+              )}
+            />
+          </button>
+        </motion.div>
+      </div>
+      {helperText ? <p className="text-sm text-ink/60">{helperText}</p> : null}
+    </div>
   );
-}
+});
