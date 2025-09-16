@@ -5,11 +5,11 @@
 
 @layer base {
   html {
-    @apply bg-paper c-on-paper;
+    @apply bg-paper text-on-paper;
   }
 
   body {
-    @apply font-sans text-lg antialiased c-on-paper;
+    @apply font-sans text-lg antialiased text-on-paper;
   }
 
   h1,
@@ -18,7 +18,7 @@
   h4,
   h5,
   h6 {
-    @apply font-serif c-on-paper;
+    @apply font-serif text-on-paper;
   }
 
   a {
@@ -43,7 +43,7 @@
 }
 
 body {
-  @apply bg-paper c-on-paper;
+  @apply bg-paper text-on-paper;
 }
 
 main {
