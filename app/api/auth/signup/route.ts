@@ -88,11 +88,29 @@ export async function POST(req: Request) {
   }
 
   if (!userId) {
-    const { data, error } = await supabase.auth.admin.getUserByEmail(email);
-    if (error) {
-      console.error('Signup lookup error', firstErrorMessage(error));
+    const normalizedEmail = email.trim().toLowerCase();
+    let page = 1;
+    const perPage = 100;
+
+    while (!userId) {
+      const { data, error } = await supabase.auth.admin.listUsers({ page, perPage });
+      if (error) {
+        console.error('Signup lookup error', firstErrorMessage(error));
+        break;
+      }
+
+      const match = data.users.find((user) => user.email?.toLowerCase() === normalizedEmail);
+      if (match) {
+        userId = match.id;
+        break;
+      }
+
+      if (!data.nextPage || data.nextPage === page) {
+        break;
+      }
+
+      page = data.nextPage;
     }
-    userId = data?.user?.id ?? null;
   }
 
   if (userId) {
