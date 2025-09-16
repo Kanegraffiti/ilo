@@ -1,5 +1,40 @@
 import { z } from 'zod';
 
+export const emailSchema = z
+  .string({ required_error: 'Please enter an email address.' })
+  .trim()
+  .min(1, 'Email is required.')
+  .email('Please use a valid email address.')
+  .transform((value) => value.toLowerCase());
+
+const passwordComplexity = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+
+export const passwordSchema = z
+  .string({ required_error: 'Please enter a password.' })
+  .min(8, 'Use at least 8 characters for your password.')
+  .regex(passwordComplexity, 'Include upper and lowercase letters and a number.');
+
+export const guardianSignupSchema = z.object({
+  email: emailSchema,
+  displayName: z
+    .string({ required_error: 'Please share your name.' })
+    .trim()
+    .min(2, 'Please enter at least 2 characters.')
+    .max(80, 'Please use a shorter name.'),
+  country: z
+    .string()
+    .trim()
+    .max(56, 'Please select a valid country.')
+    .optional()
+    .transform((value) => (value && value.length > 0 ? value : undefined)),
+  password: z
+    .union([passwordSchema, z.literal('')])
+    .optional()
+    .transform((value) => (value ? value : undefined)),
+});
+
+export type GuardianSignupInput = z.infer<typeof guardianSignupSchema>;
+
 export const submissionSchema = z.object({
   id: z.string().uuid().optional(),
   lesson_id: z.string().uuid(),

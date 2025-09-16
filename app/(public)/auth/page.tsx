@@ -1,48 +1,58 @@
 'use client';
-import { useState } from 'react';
+
+import { AuthCard } from '@/components/ui/AuthCard';
 import { Button } from '@/components/ui/Button';
-import { z } from 'zod';
+import { usePageEnter } from '@/lib/anim';
+import { motion } from 'framer-motion';
+import { LogIn, Sparkles } from 'lucide-react';
 
-const schema = z.object({ email: z.string().email() });
+const cards = [
+  {
+    title: 'Log in',
+    description: 'Sign in quickly with a magic link or your password to get back to learning.',
+    icon: <LogIn className="h-7 w-7" aria-hidden="true" />,
+    eyebrow: 'Returning families',
+    cta: <Button href="/auth/login">Go to login</Button>,
+  },
+  {
+    title: 'Create account',
+    description: 'Set up a guardian account so you can add child profiles and track joyful progress.',
+    icon: <Sparkles className="h-7 w-7" aria-hidden="true" />,
+    eyebrow: 'New here?',
+    cta: (
+      <Button href="/auth/signup" variant="secondary">
+        Start sign up
+      </Button>
+    ),
+  },
+];
 
-export default function AuthPage() {
-  const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
-
-  const send = async () => {
-    const parsed = schema.safeParse({ email });
-    if (!parsed.success) return alert('Enter a valid email');
-    await fetch('/api/auth/magic', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    });
-    setSent(true);
-  };
+export default function AuthGatewayPage() {
+  const motionProps = usePageEnter();
 
   return (
-    <div className="p-8 flex flex-col items-center gap-4">
-      <h1 className="text-2xl font-serif">Sign in</h1>
-      {sent ? (
-        <p className="text-center">Check your email for a magic link.</p>
-      ) : (
-        <form
-          className="w-full max-w-sm flex flex-col gap-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            send();
-          }}
-        >
-          <input
-            aria-label="Email address"
-            className="h-11 rounded-2xl border px-4"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+    <motion.div
+      {...motionProps}
+      className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 py-6"
+    >
+      <header className="space-y-3 text-center">
+        <h1 className="text-4xl font-serif c-on-paper">Pick how you’d like to sign in</h1>
+        <p className="max-w-2xl text-lg leading-relaxed c-on-paper">
+          Guardians and kids stay safe with our secure magic links and optional passwords.
+        </p>
+      </header>
+      <div className="grid w-full gap-6 md:grid-cols-2">
+        {cards.map((card) => (
+          <AuthCard
+            key={card.title}
+            title={card.title}
+            description={card.description}
+            icon={card.icon}
+            eyebrow={card.eyebrow}
+            action={card.cta}
           />
-          <Button type="submit">Send magic link</Button>
-        </form>
-      )}
-    </div>
+        ))}
+      </div>
+    </motion.div>
   );
 }
