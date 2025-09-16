@@ -1,43 +1,75 @@
 'use client';
-import { Button } from './ui/Button';
 
-const keys = ['á', 'à', 'ạ', 'ẹ', 'ọ', 'ṣ', 'gb'];
+import { usePressable } from '@/lib/anim';
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import type { ButtonHTMLAttributes } from 'react';
+import { useCallback } from 'react';
 
-interface ToneKeypadProps {
-  targetId?: string;
+const TONE_KEYS = [
+  { label: 'á', value: 'á' },
+  { label: 'à', value: 'à' },
+  { label: 'ạ', value: 'ạ' },
+  { label: 'é', value: 'é' },
+  { label: 'è', value: 'è' },
+  { label: 'ẹ', value: 'ẹ' },
+  { label: 'í', value: 'í' },
+  { label: 'ì', value: 'ì' },
+  { label: 'ọ', value: 'ọ' },
+  { label: 'ú', value: 'ú' },
+  { label: 'ù', value: 'ù' },
+  { label: 'ṣ', value: 'ṣ' },
+  { label: 'ń', value: 'ń' },
+  { label: 'gb', value: 'gb' },
+];
+
+function insertAtCaret(target: HTMLInputElement | HTMLTextAreaElement, text: string) {
+  const start = target.selectionStart ?? target.value.length;
+  const end = target.selectionEnd ?? target.value.length;
+  const value = target.value;
+  const newValue = `${value.slice(0, start)}${text}${value.slice(end)}`;
+  const caretPosition = start + text.length;
+  target.value = newValue;
+  target.setSelectionRange(caretPosition, caretPosition);
+  target.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
-export default function ToneKeypad({ targetId }: ToneKeypadProps) {
-  const insert = (ch: string) => {
-    let el: HTMLInputElement | HTMLTextAreaElement | null = null;
-    if (targetId) {
-      const t = document.getElementById(targetId);
-      if (t instanceof HTMLInputElement || t instanceof HTMLTextAreaElement) el = t;
-    } else {
-      const active = document.activeElement;
-      if (active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement) el = active;
-    }
-    if (!el) return;
-    const start = el.selectionStart || 0;
-    const end = el.selectionEnd || 0;
-    const val = el.value;
-    el.value = val.slice(0, start) + ch + val.slice(end);
-    el.selectionStart = el.selectionEnd = start + ch.length;
-    el.dispatchEvent(new Event('input', { bubbles: true }));
-    el.focus();
-  };
+export interface ToneKeypadProps {
+  targetId?: string;
+  onInsert?: (value: string) => void;
+  className?: string;
+  toneKeys?: typeof TONE_KEYS;
+}
+
+export function ToneKeypad({ targetId, onInsert, className, toneKeys = TONE_KEYS }: ToneKeypadProps) {
+  const pressable = usePressable();
+
+  const handleInsert = useCallback(
+    (value: string) => {
+      if (targetId && typeof document !== 'undefined') {
+        const element = document.getElementById(targetId) as HTMLInputElement | HTMLTextAreaElement | null;
+        if (element) {
+          insertAtCaret(element, value);
+          element.focus();
+        }
+      }
+      onInsert?.(value);
+    },
+    [onInsert, targetId],
+  );
+
   return (
-    <div className="grid grid-cols-4 gap-2" aria-label="Yorùbá tones keypad">
-      {keys.map((c) => (
-        <Button
-          key={c}
-          variant="secondary"
-          size="lg"
-          onClick={() => insert(c)}
-          aria-label={`Insert ${c}`}
+    <div className={cn('flex flex-wrap gap-3 rounded-2xl bg-secondary/5 p-3', className)} aria-label="Yorùbá tone keypad">
+      {toneKeys.map((key) => (
+        <motion.button
+          key={key.label}
+          type="button"
+          {...pressable}
+          onClick={() => handleInsert(key.value)}
+          className="min-h-[56px] min-w-[56px] rounded-2xl bg-white px-4 py-3 text-lg font-bold text-ink shadow-sm transition hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(211,126,44,0.4)]"
         >
-          {c}
-        </Button>
+          {key.label}
+        </motion.button>
       ))}
     </div>
   );

@@ -1,37 +1,55 @@
-import * as React from 'react';
+'use client';
+
 import { cn } from '@/lib/utils';
+import type { SelectHTMLAttributes } from 'react';
+import { forwardRef, useId } from 'react';
 
-interface Option {
-  value: string;
-  label: string;
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label?: string;
+  helperText?: string;
+  errorText?: string;
 }
 
-interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label: string;
-  options: Option[];
-  error?: string;
-}
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
+  { label, helperText, errorText, className, id, children, ...props },
+  ref,
+) {
+  const generatedId = useId();
+  const selectId = id ?? generatedId;
+  const descriptionId = helperText || errorText ? `${selectId}-description` : undefined;
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, options, error, className, ...props }, ref) => (
-    <label className="block space-y-1">
-      <span className="text-lg font-medium">{label}</span>
-      <select
-        ref={ref}
+  return (
+    <div className="space-y-2">
+      {label ? (
+        <label htmlFor={selectId} className="block text-base font-semibold text-ink">
+          {label}
+        </label>
+      ) : null}
+      <div
         className={cn(
-          'w-full rounded-2xl border border-ink/20 bg-paper px-4 py-3 text-lg text-ink focus:outline-none focus:ring-2 focus:ring-accent',
-          className
+          'relative flex min-h-[56px] items-center rounded-2xl border border-ink/10 bg-white/90 px-4 text-lg shadow-sm focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/30',
+          errorText ? 'border-red-500 focus-within:ring-red-200' : null,
         )}
-        {...props}
       >
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
-      {error && <span className="text-sm text-red-600">{error}</span>}
-    </label>
-  )
-);
-Select.displayName = 'Select';
+        <select
+          ref={ref}
+          id={selectId}
+          className={cn('w-full appearance-none bg-transparent pr-8 text-lg text-ink focus:outline-none', className)}
+          aria-describedby={descriptionId}
+          aria-invalid={Boolean(errorText)}
+          {...props}
+        >
+          {children}
+        </select>
+        <span aria-hidden="true" className="pointer-events-none absolute right-4 text-ink/50">
+          ▾
+        </span>
+      </div>
+      {helperText || errorText ? (
+        <p id={descriptionId} className={cn('text-sm', errorText ? 'text-red-600' : 'text-ink/60')}>
+          {errorText ?? helperText}
+        </p>
+      ) : null}
+    </div>
+  );
+});

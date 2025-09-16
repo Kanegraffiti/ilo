@@ -3,24 +3,71 @@
 @tailwind utilities;
 @import '../styles/theme.css';
 
-body {
-  @apply bg-paper text-ink font-sans;
+@layer base {
+  html {
+    @apply bg-paper text-ink;
+  }
+
+  body {
+    @apply font-sans text-lg antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-ink;
+  }
+
+  a {
+    @apply text-primary underline-offset-4 hover:underline focus-visible:underline;
+  }
+
+  :focus-visible {
+    outline: 4px solid rgba(211, 126, 44, 0.6);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
-/* Focus rings */
-:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+body {
+  @apply bg-paper text-ink;
+}
+
+main {
+  @apply focus:outline-none;
 }
 
 /* Decorative layers must never block clicks */
-.bg-decor, .noise, .gradient, .backdrop, .overlay,
-.hero::before, .hero::after {
+.bg-decor,
+.noise,
+.gradient,
+.backdrop,
+.overlay,
+.hero::before,
+.hero::after {
   pointer-events: none !important;
 }
 
 /* Ensure primary interactive regions are above background */
-main, nav, .interactive, .hero .content, a, button {
+main,
+nav,
+.interactive,
+.hero .content,
+a,
+button {
   position: relative;
   z-index: 10;
 }
