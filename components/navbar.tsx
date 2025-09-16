@@ -57,7 +57,7 @@ export default function NavBar() {
             Try Ìlọ̀
           </Link>
           <Link
-            href="https://wa.me/234000000000"
+            href="https://wa.me/2348104024943"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(buttonVariants({ variant: 'ghost' }), 'w-full text-center')}
