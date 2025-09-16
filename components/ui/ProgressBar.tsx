@@ -1,20 +1,27 @@
-interface ProgressBarProps {
+import { cn } from '@/lib/utils';
+
+export interface ProgressBarProps {
   value: number;
-  max?: number;
+  label?: string;
   className?: string;
 }
 
-export function ProgressBar({ value, max = 100, className }: ProgressBarProps) {
-  const pct = Math.min(100, Math.round((value / max) * 100));
+export function ProgressBar({ value, label, className }: ProgressBarProps) {
+  const safeValue = Math.min(100, Math.max(0, value));
   return (
-    <div
-      className={`w-full h-4 rounded-2xl bg-ink/10 overflow-hidden ${className ?? ''}`}
-      role="progressbar"
-      aria-valuenow={pct}
-      aria-valuemin={0}
-      aria-valuemax={100}
-    >
-      <div className="h-full bg-accent" style={{ width: `${pct}%` }} />
+    <div className={cn('space-y-2', className)}>
+      {label ? <p className="text-sm font-semibold uppercase text-ink/60">{label}</p> : null}
+      <div className="h-4 w-full overflow-hidden rounded-full bg-ink/10">
+        <div
+          className="h-full rounded-full bg-primary transition-[width] duration-500"
+          style={{ width: `${safeValue}%` }}
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={safeValue}
+        />
+      </div>
+      <span className="block text-right text-sm font-semibold text-ink/70">{safeValue}%</span>
     </div>
   );
 }

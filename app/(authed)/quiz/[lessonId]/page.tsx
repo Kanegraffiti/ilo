@@ -1,12 +1,24 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import QuizBlock, { QuizItem } from '@/components/QuizBlock';
+
+import { useEffect, useMemo, useState } from 'react';
+import { Card } from '@/components/ui/Card';
+import { Chip } from '@/components/ui/Chip';
+import { QuizBlock, type QuizItem } from '@/components/QuizBlock';
+import { useToast } from '@/components/ui/Toast';
 import { supabaseBrowser } from '@/lib/supabaseBrowser';
+import { usePageEnter } from '@/lib/anim';
+import { motion } from 'framer-motion';
+
+interface LessonSummary {
+  id: string;
+  title: string;
+}
 
 export default function QuizPage({ params }: { params: { lessonId: string } }) {
+  const [lesson, setLesson] = useState<LessonSummary | null>(null);
   const [items, setItems] = useState<QuizItem[]>([]);
-  const [lesson, setLesson] = useState<any>();
-  const [toast, setToast] = useState('');
+  const { push } = useToast();
+  const pageMotion = usePageEnter();
 
   useEffect(() => {
     const load = async () => {
@@ -15,44 +27,57 @@ export default function QuizPage({ params }: { params: { lessonId: string } }) {
         .from('lessons')
         .select('id,title')
         .eq('id', params.lessonId)
-        .single();
-      setLesson(lessonData);
+        .maybeSingle();
+      if (lessonData) {
+        setLesson(lessonData as LessonSummary);
+      }
       const { data: vocab } = await supabase
         .from('vocab')
         .select('id,term,meaning')
         .eq('lesson_id', params.lessonId);
-      const qs: QuizItem[] = (vocab || []).map((v) => ({
+      const generated: QuizItem[] = (vocab || []).map((v) => ({
         id: v.id,
         type: 'text',
-        question: `Translate "${v.term}"`,
+        prompt: `Translate “${v.term}”`,
         answer: v.meaning,
+        hint: 'Use the tone keypad for accents.',
       }));
-      setItems(qs);
+      setItems(generated);
     };
     load();
   }, [params.lessonId]);
 
-  const handleComplete = async (score: number, payload: Record<string, string>) => {
-    try {
-      const res = await fetch('/api/submissions', {
-        method: 'POST',
-        body: JSON.stringify({ lesson_id: lesson.id, type: 'quiz', score: Math.round(score * 100), payload }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      if (!res.ok) throw new Error('failed');
-      if (score === 1) setToast('🎉 Perfect score!');
-    } catch (e) {
-      setToast('Saved offline – will upload when online');
-    }
-  };
-
-  if (!lesson) return <p className="p-4">Loading…</p>;
+  const headerTitle = useMemo(() => lesson?.title ?? 'Loading lesson…', [lesson]);
 
   return (
-    <div className="p-4 space-y-4">
-      <h1 className="text-xl font-bold">{lesson.title}</h1>
-      <QuizBlock items={items} onComplete={handleComplete} />
-      {toast && <p role="status">{toast}</p>}
-    </div>
+    <motion.div {...pageMotion} className="space-y-6">
+      <header className="space-y-2">
+        <Chip tone="secondary" size="sm">
+          Quick quiz
+        </Chip>
+        <h1 className="text-3xl font-serif">{headerTitle}</h1>
+        <p className="text-lg text-ink/70">Check understanding with instant feedback. Saved offline if the network drops.</p>
+      </header>
+      <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-6">
+        <QuizBlock
+          items={items}
+          onComplete={(score) => {
+            if (!lesson) return;
+            if (score === 100) {
+              push({ title: '🎉 Perfect score!', description: 'Your answers are all correct.', tone: 'success' });
+            } else {
+              push({ title: 'Nice work!', description: `You scored ${score}%. Keep practicing.`, tone: 'info' });
+            }
+            fetch('/api/submissions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ lesson_id: lesson.id, type: 'quiz', score }),
+            }).catch(() => {
+              push({ title: 'Saved offline', description: 'We will upload your quiz once online.', tone: 'info' });
+            });
+          }}
+        />
+      </Card>
+    </motion.div>
   );
 }

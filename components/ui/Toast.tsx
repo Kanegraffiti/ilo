@@ -1,39 +1,126 @@
 'use client';
-import * as React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useCardPop } from '@/lib/anim';
 
-interface ToastContextValue {
-  add: (msg: string) => void;
+import { usePageEnter } from '@/lib/anim';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import type { ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+export type ToastTone = 'info' | 'success' | 'error';
+
+export interface ToastOptions {
+  title: string;
+  description?: string;
+  tone?: ToastTone;
+  duration?: number;
+  action?: ReactNode;
 }
 
-const ToastContext = React.createContext<ToastContextValue>({ add: () => undefined });
+interface ToastMessage extends ToastOptions {
+  id: string;
+}
 
-export const useToast = () => React.useContext(ToastContext);
+interface ToastContextValue {
+  toasts: ToastMessage[];
+  push: (toast: ToastOptions) => string;
+  dismiss: (id: string) => void;
+}
 
-export function ToastProvider({ children }: { children: React.ReactNode }) {
-  const [messages, setMessages] = React.useState<string[]>([]);
-  const add = (msg: string) => {
-    setMessages((m) => [...m, msg]);
-    setTimeout(() => setMessages((m) => m.slice(1)), 3000);
-  };
-  const card = useCardPop();
-  return (
-    <ToastContext.Provider value={{ add }}>
-      {children}
-      <div className="fixed bottom-4 right-4 flex flex-col gap-2 z-50">
-        <AnimatePresence>
-          {messages.map((m, i) => (
-            <motion.div
-              key={i}
-              {...card}
-              className="rounded-2xl bg-ink text-paper px-4 py-2 shadow-md"
-            >
-              {m}
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
-    </ToastContext.Provider>
+const ToastContext = createContext<ToastContextValue | undefined>(undefined);
+
+const toneStyles: Record<ToastTone, string> = {
+  info: 'border-primary/20 bg-paper',
+  success: 'border-emerald-400/60 bg-emerald-50 text-emerald-900',
+  error: 'border-red-400/60 bg-red-50 text-red-900',
+};
+
+const toneIcon: Record<ToastTone, string> = {
+  info: '⭐️',
+  success: '🎉',
+  error: '⚠️',
+};
+
+export function ToastProvider({ children }: { children: ReactNode }) {
+  const [toasts, setToasts] = useState<ToastMessage[]>([]);
+
+  const dismiss = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  }, []);
+
+  const push = useCallback(
+    ({ title, description, tone = 'info', duration = 5000, action }: ToastOptions) => {
+      const id = typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Date.now().toString();
+      setToasts((prev) => [...prev, { id, title, description, tone, duration, action }]);
+
+      if (duration > 0 && typeof window !== 'undefined') {
+        window.setTimeout(() => dismiss(id), duration);
+      }
+
+      return id;
+    },
+    [dismiss],
+  );
+
+  const value = useMemo<ToastContextValue>(
+    () => ({ toasts, push, dismiss }),
+    [toasts, push, dismiss],
+  );
+
+  return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
+}
+
+export function useToast() {
+  const context = useContext(ToastContext);
+  if (!context) {
+    throw new Error('useToast must be used within a ToastProvider');
+  }
+  return context;
+}
+
+export function ToastViewport() {
+  const { toasts, dismiss } = useToast();
+  const toastMotion = usePageEnter();
+
+  if (typeof document === 'undefined') {
+    return null;
+  }
+
+  return createPortal(
+    <div className="pointer-events-none fixed inset-x-0 top-4 z-[60] flex flex-col items-center gap-3 px-4">
+      <AnimatePresence>
+        {toasts.map((toast) => (
+          <motion.div
+            key={toast.id}
+            {...toastMotion}
+            role="status"
+            aria-live="polite"
+            className={cn(
+              'pointer-events-auto flex w-full max-w-sm flex-col gap-2 rounded-2xl border px-4 py-3 text-ink shadow-md focus-within:outline-none focus-within:ring-4 focus-within:ring-accent/30',
+              toneStyles[toast.tone ?? 'info'],
+            )}
+          >
+            <div className="flex items-start gap-3">
+              <span aria-hidden="true" className="text-2xl">
+                {toneIcon[toast.tone ?? 'info']}
+              </span>
+              <div className="flex-1 space-y-1">
+                <p className="font-semibold text-lg">{toast.title}</p>
+                {toast.description ? <p className="text-base text-ink/70">{toast.description}</p> : null}
+              </div>
+              <button
+                type="button"
+                className="ml-2 text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:underline"
+                onClick={() => dismiss(toast.id)}
+              >
+                Close
+              </button>
+            </div>
+            {toast.action ? <div className="pt-1">{toast.action}</div> : null}
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>,
+    document.body,
   );
 }
