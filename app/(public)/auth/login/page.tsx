@@ -9,7 +9,7 @@ import { usePageEnter } from '@/lib/anim';
 import { supabaseBrowser } from '@/lib/supabaseBrowser';
 import { emailSchema, passwordSchema } from '@/lib/zodSchemas';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Clock3, Eye, EyeOff, Lock, LogIn, Mail, ShieldCheck, UsersRound } from 'lucide-react';
+import { CheckCircle2, Clock3, Eye, EyeOff, Lock, LogIn, Mail, ShieldCheck, Users } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type FormEvent, useMemo, useState } from 'react';
@@ -87,7 +87,7 @@ export default function LoginPage() {
       {
         title: 'Guardian controls',
         description: 'Manage passwords and child profiles from your family dashboard.',
-        icon: <UsersRound className="h-6 w-6" aria-hidden="true" />,
+        icon: <Users className="h-6 w-6" aria-hidden="true" />,
       },
     ],
     [],
