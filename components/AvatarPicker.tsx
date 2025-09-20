@@ -17,11 +17,11 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Sunny tortoise',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Sunny tortoise avatar">
-        <circle cx="60" cy="60" r="56" fill="#F4E7CD" />
-        <circle cx="60" cy="54" r="32" fill="#9C5C2E" />
-        <circle cx="46" cy="48" r="6" fill="#F4E7CD" />
-        <circle cx="74" cy="48" r="6" fill="#F4E7CD" />
-        <path d="M44 70 Q60 82 76 70" stroke="#F4E7CD" strokeWidth="6" strokeLinecap="round" fill="none" />
+        <circle cx="60" cy="60" r="56" fill="#FDF6EB" />
+        <circle cx="60" cy="54" r="32" fill="#0B6E4F" />
+        <circle cx="46" cy="48" r="6" fill="#FDF6EB" />
+        <circle cx="74" cy="48" r="6" fill="#FDF6EB" />
+        <path d="M44 70 Q60 82 76 70" stroke="#FDF6EB" strokeWidth="6" strokeLinecap="round" fill="none" />
       </svg>
     ),
   },
@@ -30,10 +30,10 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Forest friend',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Forest friend avatar">
-        <rect width="120" height="120" rx="48" fill="#4A5B3F" />
-        <circle cx="45" cy="50" r="10" fill="#F3EBDD" />
-        <circle cx="75" cy="50" r="10" fill="#F3EBDD" />
-        <path d="M40 78 Q60 94 80 78" stroke="#F3EBDD" strokeWidth="8" strokeLinecap="round" fill="none" />
+        <rect width="120" height="120" rx="48" fill="#1FC596" />
+        <circle cx="45" cy="50" r="10" fill="#FFF7F2" />
+        <circle cx="75" cy="50" r="10" fill="#FFF7F2" />
+        <path d="M40 78 Q60 94 80 78" stroke="#FFF7F2" strokeWidth="8" strokeLinecap="round" fill="none" />
       </svg>
     ),
   },
@@ -42,8 +42,8 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Laughing star',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Laughing star avatar">
-        <rect width="120" height="120" rx="32" fill="#D37E2C" />
-        <polygon points="60,12 74,48 112,48 80,72 92,108 60,86 28,108 40,72 8,48 46,48" fill="#FCEFD6" />
+        <rect width="120" height="120" rx="32" fill="#F05D23" />
+        <polygon points="60,12 74,48 112,48 80,72 92,108 60,86 28,108 40,72 8,48 46,48" fill="#FFE9C7" />
       </svg>
     ),
   },
@@ -52,10 +52,10 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Gentle moon',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Gentle moon avatar">
-        <circle cx="60" cy="60" r="58" fill="#2C221B" />
-        <path d="M70 20a38 38 0 1 0 0 80 38 38 0 0 1 0-80z" fill="#F4E7CD" />
-        <circle cx="48" cy="54" r="6" fill="#2C221B" />
-        <circle cx="62" cy="64" r="4" fill="#2C221B" />
+        <circle cx="60" cy="60" r="58" fill="#1E1208" />
+        <path d="M70 20a38 38 0 1 0 0 80 38 38 0 0 1 0-80z" fill="#FDF6EB" />
+        <circle cx="48" cy="54" r="6" fill="#1E1208" />
+        <circle cx="62" cy="64" r="4" fill="#1E1208" />
       </svg>
     ),
   },
@@ -64,10 +64,10 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Joyful drum',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Joyful drum avatar">
-        <rect width="120" height="120" rx="40" fill="#F4E7CD" />
-        <ellipse cx="60" cy="36" rx="36" ry="24" fill="#9C5C2E" />
-        <rect x="30" y="36" width="60" height="54" rx="12" fill="#D37E2C" />
-        <path d="M30 60 L90 60" stroke="#9C5C2E" strokeWidth="6" />
+        <rect width="120" height="120" rx="40" fill="#FDF6EB" />
+        <ellipse cx="60" cy="36" rx="36" ry="24" fill="#0B6E4F" />
+        <rect x="30" y="36" width="60" height="54" rx="12" fill="#F05D23" />
+        <path d="M30 60 L90 60" stroke="#0B6E4F" strokeWidth="6" />
       </svg>
     ),
   },
@@ -76,11 +76,11 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Dancing mask',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Dancing mask avatar">
-        <rect width="120" height="120" rx="44" fill="#4A5B3F" />
-        <path d="M60 20 C30 20 24 48 28 72 C32 98 48 108 60 108 C72 108 88 98 92 72 C96 48 90 20 60 20Z" fill="#F3EBDD" />
-        <circle cx="48" cy="60" r="8" fill="#4A5B3F" />
-        <circle cx="72" cy="60" r="8" fill="#4A5B3F" />
-        <path d="M44 78 Q60 88 76 78" stroke="#4A5B3F" strokeWidth="6" strokeLinecap="round" />
+        <rect width="120" height="120" rx="44" fill="#0B6E4F" />
+        <path d="M60 20 C30 20 24 48 28 72 C32 98 48 108 60 108 C72 108 88 98 92 72 C96 48 90 20 60 20Z" fill="#FDF6EB" />
+        <circle cx="48" cy="60" r="8" fill="#0B6E4F" />
+        <circle cx="72" cy="60" r="8" fill="#0B6E4F" />
+        <path d="M44 78 Q60 88 76 78" stroke="#F05D23" strokeWidth="6" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -89,9 +89,9 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'Spark kite',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="Spark kite avatar">
-        <rect width="120" height="120" rx="32" fill="#D37E2C" />
-        <polygon points="60,16 100,60 60,104 20,60" fill="#F4E7CD" />
-        <path d="M60 104 L60 120" stroke="#F4E7CD" strokeWidth="6" strokeLinecap="round" />
+        <rect width="120" height="120" rx="32" fill="#F05D23" />
+        <polygon points="60,16 100,60 60,104 20,60" fill="#FDF6EB" />
+        <path d="M60 104 L60 120" stroke="#FDF6EB" strokeWidth="6" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -100,9 +100,9 @@ const AVATAR_OPTIONS: AvatarOption[] = [
     label: 'River wave',
     render: (
       <svg viewBox="0 0 120 120" className="h-20 w-20" role="img" aria-label="River wave avatar">
-        <rect width="120" height="120" rx="50" fill="#2C221B" />
-        <path d="M10 80 Q30 60 50 80 T90 80 T130 80" stroke="#F3EBDD" strokeWidth="10" fill="none" />
-        <path d="M10 96 Q30 76 50 96 T90 96 T130 96" stroke="#F3EBDD" strokeWidth="8" fill="none" opacity="0.6" />
+        <rect width="120" height="120" rx="50" fill="#1E1208" />
+        <path d="M10 80 Q30 60 50 80 T90 80 T130 80" stroke="#1FC596" strokeWidth="10" fill="none" />
+        <path d="M10 96 Q30 76 50 96 T90 96 T130 96" stroke="#1FC596" strokeWidth="8" fill="none" opacity="0.6" />
       </svg>
     ),
   },

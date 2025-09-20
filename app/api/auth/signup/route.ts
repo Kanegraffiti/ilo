@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     return Response.json({ ok: false, message }, { status: 400 });
   }
 
-  const { email, displayName, country, password } = parsed.data;
+  const { email, displayName, country, password, updatesOptIn } = parsed.data;
   const rateKey = `signup:${ip}:${email}`;
   if (!rateLimit(rateKey, 3, 60000).ok) {
     return Response.json(
@@ -51,6 +51,7 @@ export async function POST(req: Request) {
       email,
       password,
       email_confirm: true,
+      user_metadata: { updates_opt_in: updatesOptIn },
     });
 
     if (error) {
@@ -114,6 +115,16 @@ export async function POST(req: Request) {
   }
 
   if (userId) {
+    if (typeof updatesOptIn === 'boolean') {
+      const { error: metadataError } = await supabase.auth.admin.updateUserById(userId, {
+        user_metadata: { updates_opt_in: updatesOptIn },
+      });
+
+      if (metadataError) {
+        console.error('Metadata update error', firstErrorMessage(metadataError));
+      }
+    }
+
     const { error } = await supabase.from('user_profiles').upsert(
       {
         user_id: userId,

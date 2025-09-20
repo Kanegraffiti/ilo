@@ -1,17 +1,18 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { SelectHTMLAttributes } from 'react';
+import type { ReactNode, SelectHTMLAttributes } from 'react';
 import { forwardRef, useId } from 'react';
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   helperText?: string;
   errorText?: string;
+  leadingIcon?: ReactNode;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
-  { label, helperText, errorText, className, id, children, ...props },
+  { label, helperText, errorText, className, id, children, leadingIcon, ...props },
   ref,
 ) {
   const generatedId = useId();
@@ -27,15 +28,20 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
       ) : null}
       <div
         className={cn(
-          'relative flex min-h-[56px] items-center rounded-2xl border border-[color:var(--color-on-surface)]/10 bg-surface px-4 text-lg shadow-sm transition focus-within:border-primary focus-within:ring-2 focus-within:ring-[var(--color-accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-surface)]',
+          'relative flex min-h-[56px] items-center gap-3 rounded-2xl border border-[color:var(--color-on-surface)]/10 bg-surface px-4 text-lg shadow-sm transition focus-within:border-primary focus-within:ring-2 focus-within:ring-[var(--color-accent)] focus-within:ring-offset-2 focus-within:ring-offset-[var(--color-surface)]',
           errorText ? 'border-red-600 focus-within:border-red-600 focus-within:ring-red-500/40' : null,
         )}
       >
+        {leadingIcon ? (
+          <span aria-hidden="true" className="text-[color:var(--color-on-surface)]/70">
+            {leadingIcon}
+          </span>
+        ) : null}
         <select
           ref={ref}
           id={selectId}
           className={cn(
-            'w-full appearance-none bg-transparent pr-8 text-lg c-on-surface focus:outline-none',
+            'w-full flex-1 appearance-none bg-transparent pr-8 text-lg c-on-surface focus:outline-none',
             className,
           )}
           aria-describedby={descriptionId}

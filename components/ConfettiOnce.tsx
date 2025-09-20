@@ -13,7 +13,7 @@ interface ConfettiPiece {
   color: string;
 }
 
-const COLORS = ['#D37E2C', '#9C5C2E', '#4A5B3F', '#F4E7CD', '#F9B256'];
+const COLORS = ['#F05D23', '#0B6E4F', '#F3A712', '#FDF6EB', '#1FC596'];
 
 export interface ConfettiOnceProps {
   trigger: boolean;
