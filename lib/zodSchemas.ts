@@ -31,6 +31,7 @@ export const guardianSignupSchema = z.object({
     .union([passwordSchema, z.literal('')])
     .optional()
     .transform((value) => (value ? value : undefined)),
+  updatesOptIn: z.boolean().optional().default(false),
 });
 
 export type GuardianSignupInput = z.infer<typeof guardianSignupSchema>;

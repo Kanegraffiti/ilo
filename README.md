@@ -19,11 +19,11 @@ Marketing copy lives in `/content`. Update markdown, YAML, or JSON files and red
 
 Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS variables:
 
-- `primary` – `#9C5C2E`
-- `secondary` – `#4A5B3F`
-- `accent` – `#D37E2C`
-- `ink` – `#2C221B`
-- `paper` – `#F4E7CD`
+- `primary` – `#0B6E4F`
+- `secondary` – `#F3A712`
+- `accent` – `#F05D23`
+- `ink` – `#1E1208`
+- `paper` – `#FDF6EB`
 
 ## Deploy to Vercel
 
