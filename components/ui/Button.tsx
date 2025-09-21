@@ -9,24 +9,24 @@ import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef, useMemo } from 'react';
 
 const baseStyles =
-  'relative inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-2xl font-semibold shadow-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface)]';
+  'relative inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-2xl r-xl font-semibold shadow-md transition-colors transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] active:scale-[0.98]';
 
 export const buttonVariants = cva(baseStyles, {
   variants: {
     variant: {
       primary:
-        'bg-primary c-on-primary hover:bg-primary/90 active:bg-primary/95 disabled:pointer-events-none disabled:opacity-60',
+        'bg-primary c-on-primary hover:bg-primary hover:shadow-lg focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
       secondary:
-        'bg-secondary c-on-secondary hover:bg-secondary/90 active:bg-secondary/95 disabled:pointer-events-none disabled:opacity-60',
+        'bg-secondary c-on-secondary hover:bg-secondary hover:shadow-lg focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
       ghost:
-        'border border-primary/60 bg-transparent c-on-paper shadow-none hover:bg-primary/10 active:bg-primary/15 disabled:pointer-events-none disabled:opacity-60',
+        'b-border bg-transparent text-[var(--on-paper)] shadow-none hover:bg-[var(--surface-2)] focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
       danger:
-        'bg-red-600 text-white hover:bg-red-500 active:bg-red-600/90 disabled:pointer-events-none disabled:opacity-60',
+        'bg-red-600 text-white hover:bg-red-600 focus-visible:ring-red-500 disabled:pointer-events-none disabled:opacity-60',
     },
     size: {
-      md: 'px-4 py-2.5 text-base',
-      lg: 'px-5 py-3 text-lg',
-      xl: 'px-6 py-4 text-xl',
+      md: 'px-4 py-2.5 text-lg',
+      lg: 'px-5 py-3 text-xl',
+      xl: 'px-6 py-4 text-2xl',
     },
     pulse: {
       true: '',
