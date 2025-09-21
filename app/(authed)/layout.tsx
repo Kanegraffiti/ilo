@@ -1,6 +1,7 @@
 'use client';
 
 import { BottomNav } from '@/components/BottomNav';
+import Footer from '@/components/footer/Footer';
 import { TopAppBar } from '@/components/TopAppBar';
 import { Chip } from '@/components/ui/Chip';
 import { useToast } from '@/components/ui/Toast';
@@ -47,6 +48,7 @@ export default function AuthedLayout({ children }: { children: React.ReactNode }
       >
         {children}
       </main>
+      <Footer />
       <BottomNav items={NAV_ITEMS} />
     </div>
   );
