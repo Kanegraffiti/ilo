@@ -1,18 +1,21 @@
-import { Card } from '@/components/ui/Card';
-import { LucideIcon } from 'lucide-react';
-
-interface Props {
-  icon: LucideIcon;
+interface FeatureCardProps {
+  icon: string;
   title: string;
-  text: string;
+  body: string;
 }
 
-export function FeatureCard({ icon: Icon, title, text }: Props) {
+export function FeatureCard({ icon, title, body }: FeatureCardProps) {
   return (
-    <Card className="text-center hover:shadow-md transition">
-      <Icon className="mx-auto mb-4 h-8 w-8 text-brand" />
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-ink">{text}</p>
-    </Card>
+    <div className="bg-surface-1 c-on-surface-1 r-xl b-border shadow-md p-4 md:p-5 transition hover:bg-[var(--surface-3)]">
+      <div className="flex items-start gap-3">
+        <div className="text-2xl md:text-3xl" aria-hidden="true">
+          {icon}
+        </div>
+        <div className="space-y-1">
+          <h3 className="font-title text-xl md:text-2xl text-[var(--on-surface-1)]">{title}</h3>
+          <p className="text-[var(--on-surface-1)]/85">{body}</p>
+        </div>
+      </div>
+    </div>
   );
 }

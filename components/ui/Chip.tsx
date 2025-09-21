@@ -3,25 +3,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type { HTMLAttributes } from 'react';
 
 const chipStyles = cva(
-  'inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold tracking-wide text-primary',
+  'inline-flex items-center gap-2 rounded-full r-xl px-3 py-1 text-sm font-semibold tracking-wide transition-colors',
   {
     variants: {
       tone: {
-        primary: 'bg-primary/15 text-primary',
-        secondary: 'bg-secondary/15 text-secondary',
-        accent: 'bg-accent/15 text-accent',
-        neutral: 'bg-ink/10 text-ink/80',
-        success: 'bg-emerald-100 text-emerald-700',
-        warning: 'bg-amber-100 text-amber-700',
+        accent: 'bg-accent c-on-accent shadow-sm',
+        secondary: 'bg-surface-2 c-on-surface-2 b-border',
+        warning: 'bg-surface-3 c-on-surface-3 b-border',
       },
       size: {
-        sm: 'text-xs px-2 py-1',
-        md: 'text-sm px-3 py-1.5',
-        lg: 'text-base px-4 py-2',
+        sm: 'px-2 py-1 text-xs',
+        md: 'px-3 py-1.5 text-sm',
+        lg: 'px-4 py-2 text-base',
       },
     },
     defaultVariants: {
-      tone: 'primary',
+      tone: 'accent',
       size: 'md',
     },
   },
