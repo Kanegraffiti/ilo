@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export default function NavBar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="sticky top-0 z-20 bg-cream/80 backdrop-blur">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur supports-[backdrop-filter]:bg-cream/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
         <Link href="/" className="flex items-center space-x-2 font-bold">
           <Image
