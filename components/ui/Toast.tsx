@@ -4,7 +4,7 @@ import { usePageEnter } from '@/lib/anim';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export type ToastTone = 'info' | 'success' | 'error';
@@ -81,8 +81,14 @@ export function useToast() {
 export function ToastViewport() {
   const { toasts, dismiss } = useToast();
   const toastMotion = usePageEnter();
+  const [mounted, setMounted] = useState(false);
 
-  if (typeof document === 'undefined') {
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted || typeof document === 'undefined') {
     return null;
   }
 
