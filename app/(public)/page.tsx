@@ -76,7 +76,7 @@ export default function LandingPage() {
           {FEATURES.map((feature) => (
             <Card
               key={feature.title}
-              className="h-full border border-ink/10 bg-white/80"
+              className="h-full border border-ink/10 bg-white/80 dark:border-ink/25 dark:bg-surface/80"
               bodyClassName="space-y-3"
               header={
                 <span className="flex items-center gap-3 text-xl font-serif">
@@ -87,7 +87,7 @@ export default function LandingPage() {
                 </span>
               }
             >
-              <p className="text-lg text-ink/70">{feature.description}</p>
+              <p className="text-lg text-ink/80 dark:text-ink">{feature.description}</p>
             </Card>
           ))}
         </div>
@@ -97,26 +97,28 @@ export default function LandingPage() {
         <h2 className="text-3xl font-serif">Families feel welcome from day one</h2>
         <div className="grid gap-6 lg:grid-cols-2">
           <Card
-            className="border border-ink/10 bg-white/80"
+            className="border border-ink/10 bg-white/80 dark:border-ink/25 dark:bg-surface/80"
             bodyClassName="space-y-4"
             header={<span className="text-xl font-serif">For guardians</span>}
           >
-            <p className="text-lg text-ink/70">
+            <p className="text-lg text-ink/80 dark:text-ink">
               Track streaks, approve practice, and celebrate wins. Notifications are gentle and respectful.
             </p>
-            <ul className="space-y-3 text-lg text-ink/80">
+            <ul className="space-y-3 text-lg text-ink/80 dark:text-ink">
               <li>• Daily check-ins with culturally rooted tips</li>
               <li>• Offline-ready lessons for commutes</li>
               <li>• Profiles for each child 4–12</li>
             </ul>
           </Card>
           <Card
-            className="border border-ink/10 bg-white/80"
+            className="border border-ink/10 bg-white/80 dark:border-ink/25 dark:bg-surface/80"
             bodyClassName="space-y-4"
             header={<span className="text-xl font-serif">For kids</span>}
           >
-            <p className="text-lg text-ink/70">Short activities keep eyes bright and voices practicing tones with confidence.</p>
-            <ul className="space-y-3 text-lg text-ink/80">
+            <p className="text-lg text-ink/80 dark:text-ink">
+              Short activities keep eyes bright and voices practicing tones with confidence.
+            </p>
+            <ul className="space-y-3 text-lg text-ink/80 dark:text-ink">
               <li>• Tap-to-hear Yorùbá words with tone keypad</li>
               <li>• Collect tortoise shells for effort, not just perfection</li>
               <li>• Friendly animations that pause when motion is reduced</li>
@@ -127,13 +129,13 @@ export default function LandingPage() {
 
       <section id="faq" className="space-y-6">
         <h2 className="text-3xl font-serif">Questions guardians ask</h2>
-        <div className="space-y-4 rounded-2xl border border-ink/10 bg-white/80 p-6">
+        <div className="space-y-4 rounded-2xl border border-ink/10 bg-white/80 p-6 dark:border-ink/25 dark:bg-surface/80">
           {FAQ.map((item) => (
             <details key={item.question} className="group rounded-2xl border border-transparent p-4 transition hover:border-primary/30">
               <summary className="cursor-pointer text-xl font-semibold text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-accent/40">
                 {item.question}
               </summary>
-              <p className="mt-3 text-lg text-ink/70">{item.answer}</p>
+              <p className="mt-3 text-lg text-ink/80 dark:text-ink">{item.answer}</p>
             </details>
           ))}
         </div>
