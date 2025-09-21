@@ -48,19 +48,19 @@ export default function FactsPage() {
   const [selectedFact, setSelectedFact] = useState<Fact | null>(null);
 
   return (
-    <motion.div {...pageMotion} className="space-y-10">
+    <motion.div {...pageMotion} className="space-y-10 bg-paper c-on-paper">
       <div className="space-y-3">
         <Chip tone="secondary" size="sm">
           Yorùbá fun fact archive
         </Chip>
         <h1 className="text-4xl font-serif">Small facts with big smiles</h1>
-        <p className="text-xl text-ink/70">Share these with your learners during breakfast or the ride home.</p>
+        <p className="text-xl opacity-80">Share these with your learners during breakfast or the ride home.</p>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         {FACTS.map((fact) => (
           <Card
             key={fact.id}
-            className="h-full border border-ink/10 bg-white/85"
+            className="h-full"
             bodyClassName="space-y-4"
             header={
               <span className="flex items-center gap-3 text-xl font-serif">
@@ -71,7 +71,7 @@ export default function FactsPage() {
               </span>
             }
           >
-            <p className="text-lg text-ink/70">{fact.summary}</p>
+            <p className="text-lg opacity-80">{fact.summary}</p>
             <Button variant="secondary" size="md" onClick={() => setSelectedFact(fact)}>
               Read more
             </Button>
@@ -89,7 +89,7 @@ export default function FactsPage() {
           </Button>
         }
       >
-        <p className="text-lg text-ink/80">{selectedFact?.content}</p>
+        <p className="text-lg opacity-90">{selectedFact?.content}</p>
       </Modal>
     </motion.div>
   );

@@ -51,13 +51,13 @@ export default function LeaderboardsPage() {
   }, [tab, moduleFilter]);
 
   return (
-    <motion.div {...pageMotion} className="space-y-8">
+    <motion.div {...pageMotion} className="space-y-8 bg-paper c-on-paper">
       <header className="space-y-3">
         <Chip tone="accent" size="sm">
           Friendly competition
         </Chip>
         <h1 className="text-4xl font-serif">Leaderboards</h1>
-        <p className="text-lg text-ink/70">Celebrate effort, not pressure. Kids earn XP for daily practice and kindness.</p>
+        <p className="text-lg opacity-80">Celebrate effort, not pressure. Kids earn XP for daily practice and kindness.</p>
       </header>
 
       <div role="tablist" aria-label="Leaderboard timeframe" className="flex gap-3">
@@ -89,9 +89,9 @@ export default function LeaderboardsPage() {
           action={<Button href="/kids">Add a child</Button>}
         />
       ) : (
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="overflow-x-auto">
-          <table className="min-w-full divide-y divide-ink/10">
-            <thead className="text-left text-sm uppercase tracking-wide text-ink/60">
+        <Card bodyClassName="overflow-x-auto">
+          <table className="min-w-full divide-y divide-[var(--border)]">
+            <thead className="text-left text-sm uppercase tracking-wide opacity-70">
               <tr>
                 <th className="px-4 py-3">Rank</th>
                 <th className="px-4 py-3">Learner</th>
@@ -99,19 +99,19 @@ export default function LeaderboardsPage() {
                 <th className="px-4 py-3 text-right">XP</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-ink/10 text-lg">
+            <tbody className="divide-y divide-[var(--border)] text-lg">
               {data.map((entry, index) => (
-                <tr key={entry.id} className="hover:bg-primary/5">
-                  <td className="px-4 py-4 font-semibold text-primary">#{index + 1}</td>
+                <tr key={entry.id} className="hover:bg-[var(--color-primary)]/10">
+                  <td className="px-4 py-4 font-semibold text-[var(--color-primary)]">#{index + 1}</td>
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary/15 font-semibold text-secondary">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary c-on-secondary font-semibold">
                         {entry.name.charAt(0)}
                       </span>
                       <span>{entry.name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-ink/70 capitalize">{entry.module.replace('-', ' ')}</td>
+                  <td className="px-4 py-4 capitalize opacity-80">{entry.module.replace('-', ' ')}</td>
                   <td className="px-4 py-4 text-right font-semibold">{entry.xp.toLocaleString()} XP</td>
                 </tr>
               ))}

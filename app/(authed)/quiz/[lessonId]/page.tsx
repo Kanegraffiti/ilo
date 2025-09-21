@@ -50,15 +50,15 @@ export default function QuizPage({ params }: { params: { lessonId: string } }) {
   const headerTitle = useMemo(() => lesson?.title ?? 'Loading lesson…', [lesson]);
 
   return (
-    <motion.div {...pageMotion} className="space-y-6">
+    <motion.div {...pageMotion} className="space-y-6 bg-paper c-on-paper">
       <header className="space-y-2">
         <Chip tone="secondary" size="sm">
           Quick quiz
         </Chip>
         <h1 className="text-3xl font-serif">{headerTitle}</h1>
-        <p className="text-lg text-ink/70">Check understanding with instant feedback. Saved offline if the network drops.</p>
+        <p className="text-lg opacity-80">Check understanding with instant feedback. Saved offline if the network drops.</p>
       </header>
-      <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-6">
+      <Card bodyClassName="space-y-6">
         <QuizBlock
           items={items}
           onComplete={(score) => {

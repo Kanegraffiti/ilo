@@ -50,14 +50,14 @@ export default function LandingPage() {
             Yorùbá made joyful
           </Chip>
           <h1 className="font-title text-4xl text-[var(--on-paper)] md:text-5xl">
-            Ìlọ̀: playful Yorùbá adventures for curious minds
+            Learn Yoruba with Ìlọ̀
           </h1>
           <p className="text-xl text-[var(--on-paper)]/85">
             Build daily habits with songs, stories, and quizzes that celebrate culture. Ìlọ̀ keeps lessons warm, calm, and kid-first—Ẹ jẹ́ ká kọ́ ẹ̀kọ́ papọ̀!
           </p>
           <div className="flex flex-wrap gap-4">
             <Button href="/auth/signup" size="xl" pulse>
-              Get started
+              Get Started
             </Button>
             <Button href="#faq" variant="ghost" size="xl">
               See how it works
@@ -128,6 +128,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <iframe src="/lessons/1" className="hidden" aria-hidden tabIndex={-1} title="Prefetch lesson" />
     </motion.div>
   );
 }

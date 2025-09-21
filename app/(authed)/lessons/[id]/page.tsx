@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 
 interface Lesson {
   id: string;
+  legacyId?: string;
   title: string;
   objectives: string[];
   notes: string[];
@@ -20,6 +21,7 @@ interface Lesson {
 const LESSONS: Lesson[] = [
   {
     id: 'intro',
+    legacyId: '1',
     title: 'Ẹ káàárọ̀ greetings',
     objectives: ['Greet elders respectfully', 'Match tone marks to sound'],
     notes: [
@@ -35,6 +37,7 @@ const LESSONS: Lesson[] = [
   },
   {
     id: 'feelings',
+    legacyId: '2',
     title: 'Báwo ni o ṣe ń rí? Feelings check-in',
     objectives: ['Share feelings politely', 'Use Yorùbá nasal sounds'],
     notes: [
@@ -50,8 +53,32 @@ const LESSONS: Lesson[] = [
   },
 ];
 
+const LESSON_LOOKUP = LESSONS.reduce((map, lesson) => {
+  map.set(lesson.id, lesson);
+  if (lesson.legacyId) {
+    map.set(lesson.legacyId, lesson);
+  }
+  return map;
+}, new Map<string, Lesson>());
+
 function getLesson(id: string) {
-  return LESSONS.find((lesson) => lesson.id === id);
+  return LESSON_LOOKUP.get(id);
+}
+
+export function generateStaticParams() {
+  const params: { id: string }[] = [];
+  const seen = new Set<string>();
+  for (const lesson of LESSONS) {
+    if (!seen.has(lesson.id)) {
+      params.push({ id: lesson.id });
+      seen.add(lesson.id);
+    }
+    if (lesson.legacyId && !seen.has(lesson.legacyId)) {
+      params.push({ id: lesson.legacyId });
+      seen.add(lesson.legacyId);
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
@@ -87,18 +114,18 @@ export default function LessonPage({ params }: { params: { id: string } }) {
       <OfflineNotice />
 
       <section className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-4">
+        <Card bodyClassName="space-y-4">
           <h2 className="text-2xl font-serif">Teaching notes</h2>
-          <div className="prose max-w-none prose-lg text-ink/80">
+          <div className="prose max-w-none prose-lg">
             {lesson.notes.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </Card>
-        <Card className="border border-ink/10 bg-secondary/10" bodyClassName="space-y-4">
+        <Card className="bg-surface-2 c-on-surface-2" bodyClassName="space-y-4">
           <h2 className="text-2xl font-serif">Media gallery</h2>
           <div className="grid gap-4">
-            <div className="flex min-h-[160px] items-center justify-center rounded-2xl border border-dashed border-secondary/40 bg-white/80 p-6 text-center text-lg text-secondary">
+            <div className="flex min-h-[160px] items-center justify-center rounded-2xl border border-dashed border-[var(--border)] bg-surface-1 c-on-surface-1 p-6 text-center text-lg opacity-90">
               Signed audio + story visuals download on first view. Offline placeholder shown when not connected.
             </div>
             <Button variant="secondary" size="md">Download printable</Button>
@@ -113,20 +140,20 @@ export default function LessonPage({ params }: { params: { id: string } }) {
 
       <section className="space-y-3">
         <h2 className="text-2xl font-serif">Practice writing tones</h2>
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-4">
-          <label htmlFor="tone-practice" className="text-lg font-semibold text-ink">
+        <Card bodyClassName="space-y-4">
+          <label htmlFor="tone-practice" className="text-lg font-semibold">
             Write your greeting here
           </label>
           <textarea
             id="tone-practice"
-            className="min-h-[140px] w-full rounded-2xl border border-ink/10 bg-white/90 p-4 text-lg text-ink shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/30"
+            className="min-h-[140px] w-full rounded-2xl border border-[var(--border)] bg-surface-1 c-on-surface-1 p-4 text-lg shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-[var(--color-primary)]/30"
             placeholder="Ẹ káàárọ̀, bàbá mi."
           />
           <ToneKeypad targetId="tone-practice" />
         </Card>
       </section>
 
-      <nav className="sticky bottom-4 z-20 flex flex-wrap gap-4 rounded-2xl border border-ink/10 bg-paper/95 p-4 shadow-md" aria-label="Lesson pagination">
+      <nav className="sticky bottom-4 z-20 flex flex-wrap gap-4 rounded-2xl border border-[var(--border)] bg-surface-1 c-on-surface-1 p-4 shadow-md supports-[backdrop-filter]:bg-surface-1/90" aria-label="Lesson pagination">
         <Button
           href={lesson.prevId ? `/lessons/${lesson.prevId}` : '#'}
           variant="ghost"

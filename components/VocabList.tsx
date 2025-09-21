@@ -74,14 +74,10 @@ export function VocabList({ items, className }: VocabListProps) {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item) => (
-          <Card
-            key={item.id}
-            className="border border-ink/10 bg-white/80"
-            bodyClassName="flex items-center justify-between gap-4"
-          >
+          <Card key={item.id} bodyClassName="flex items-center justify-between gap-4">
             <div className="space-y-1 text-left">
-              <p className="text-2xl font-serif text-ink">{item.term}</p>
-              <p className="text-lg text-ink/70">{item.translation}</p>
+              <p className="text-2xl font-serif">{item.term}</p>
+              <p className="text-lg opacity-80">{item.translation}</p>
               <Chip tone="accent" size="sm">
                 Tap to hear
               </Chip>

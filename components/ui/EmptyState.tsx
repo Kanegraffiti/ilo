@@ -20,7 +20,7 @@ export function EmptyState({ icon, title, description, action, className }: Empt
     <motion.div
       {...motionProps}
       className={cn(
-        'flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-ink/20 bg-paper/80 px-6 py-12 text-center text-ink shadow-sm',
+        'flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-[var(--border)] bg-paper c-on-paper px-6 py-12 text-center shadow-sm',
         className,
       )}
       role="status"
@@ -32,7 +32,7 @@ export function EmptyState({ icon, title, description, action, className }: Empt
         </div>
       ) : null}
       <h3 className="text-2xl font-serif">{title}</h3>
-      {description ? <p className="max-w-md text-lg text-ink/70">{description}</p> : null}
+      {description ? <p className="max-w-md text-lg opacity-80">{description}</p> : null}
       {action}
     </motion.div>
   );

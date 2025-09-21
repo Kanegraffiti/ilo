@@ -24,7 +24,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between gap-4">
-        <span id={`${toggleId}-label`} className="text-base font-semibold text-ink">
+        <span id={`${toggleId}-label`} className="text-base font-semibold">
           {label}
         </span>
         <motion.div {...pressable}>
@@ -36,8 +36,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
             aria-labelledby={`${toggleId}-label`}
             onClick={() => onCheckedChange(!checked)}
             className={cn(
-              'relative inline-flex h-11 w-20 items-center rounded-full border border-transparent px-1 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(211,126,44,0.4)] focus-visible:ring-offset-2 focus-visible:ring-offset-paper',
-              checked ? 'bg-primary/90' : 'bg-ink/15',
+              'relative inline-flex h-11 w-20 items-center rounded-full border border-transparent px-1 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)]',
+              checked ? 'bg-primary c-on-primary' : 'bg-surface-3 c-on-surface-3',
               className,
             )}
             {...props}
@@ -46,14 +46,14 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(function Toggle
             <span
               aria-hidden="true"
               className={cn(
-                'block h-9 w-9 rounded-full bg-paper shadow-md transition-transform',
+                'block h-9 w-9 rounded-full bg-surface-1 shadow-md transition-transform',
                 checked ? 'translate-x-9' : 'translate-x-0',
               )}
             />
           </button>
         </motion.div>
       </div>
-      {helperText ? <p className="text-sm text-ink/60">{helperText}</p> : null}
+      {helperText ? <p className="text-sm opacity-70">{helperText}</p> : null}
     </div>
   );
 });

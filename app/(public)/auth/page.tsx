@@ -12,7 +12,12 @@ const cards = [
     description: 'Sign in quickly with a magic link or your password to get back to learning.',
     icon: <LogIn className="h-7 w-7" aria-hidden="true" />,
     eyebrow: 'Returning families',
-    cta: <Button href="/auth/login">Go to login</Button>,
+    cta: (
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <Button href="/auth/login">Go to login</Button>
+        <Button variant="secondary">Send Magic Link</Button>
+      </div>
+    ),
   },
   {
     title: 'Create account',

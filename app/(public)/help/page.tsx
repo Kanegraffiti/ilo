@@ -45,19 +45,18 @@ export default function HelpPage() {
   };
 
   return (
-    <motion.div {...pageMotion} className="space-y-10">
+    <motion.div {...pageMotion} className="space-y-10 bg-paper c-on-paper">
       <div className="space-y-3">
         <Chip tone="accent" size="sm">
           We’re here for you
         </Chip>
         <h1 className="text-4xl font-serif">Help & contact</h1>
-        <p className="text-xl text-ink/70">
+        <p className="text-xl opacity-80">
           Guardians, teachers, and kids deserve quick answers. Reach out—ọ̀nà ọ̀kan ṣoṣo ni a fi ń kọ́ àkọ́kọ́.
         </p>
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <Card
-          className="border border-ink/10 bg-white/85"
           bodyClassName="space-y-6"
           header={<span className="text-2xl font-serif">Send us a note</span>}
         >
@@ -85,30 +84,30 @@ export default function HelpPage() {
               <option value="teacher">Teacher beta</option>
             </Select>
             <div className="space-y-2">
-              <label htmlFor="message" className="block text-base font-semibold text-ink">
+              <label htmlFor="message" className="block text-base font-semibold">
                 Message
               </label>
               <textarea
                 id="message"
                 required
                 minLength={10}
-                className="min-h-[160px] w-full rounded-2xl border border-ink/10 bg-white/90 p-4 text-lg text-ink shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/30"
+                className="min-h-[160px] w-full rounded-2xl border border-[var(--border)] bg-surface-1 c-on-surface-1 p-4 text-lg shadow-sm focus:border-primary focus:outline-none focus:ring-4 focus:ring-[var(--color-primary)]/30"
                 value={formState.message}
                 onChange={(event) => setFormState((prev) => ({ ...prev, message: event.target.value }))}
               />
-              <p className="text-sm text-ink/60">Share as much detail as you like—ẹ ṣeun!</p>
+              <p className="text-sm opacity-70">Share as much detail as you like—ẹ ṣeun!</p>
             </div>
             <Button type="submit" disabled={submitting}>
               {submitting ? 'Sending…' : 'Send message'}
             </Button>
           </form>
         </Card>
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-4" header={<span className="text-2xl font-serif">Quick answers</span>}>
+        <Card bodyClassName="space-y-4" header={<span className="text-2xl font-serif">Quick answers</span>}>
           <div className="space-y-3">
             {FAQ.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-ink/10 p-4">
-                <summary className="cursor-pointer text-lg font-semibold text-ink">{item.question}</summary>
-                <p className="pt-3 text-lg text-ink/70">{item.answer}</p>
+              <details key={item.question} className="rounded-2xl border border-[var(--border)] p-4">
+                <summary className="cursor-pointer text-lg font-semibold">{item.question}</summary>
+                <p className="pt-3 text-lg opacity-80">{item.answer}</p>
               </details>
             ))}
           </div>

@@ -33,7 +33,7 @@ export function ProgressRing({ value, size = 120, strokeWidth = 12, label, class
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="drop-shadow-sm">
         <circle
           stroke="currentColor"
-          className="text-ink/10"
+          className="text-[var(--on-surface-1)]/10"
           fill="transparent"
           strokeWidth={strokeWidth}
           cx={size / 2}
@@ -60,9 +60,9 @@ export function ProgressRing({ value, size = 120, strokeWidth = 12, label, class
           </linearGradient>
         </defs>
       </svg>
-      <div className="absolute flex flex-col items-center justify-center text-ink">
+      <div className="absolute flex flex-col items-center justify-center text-[var(--on-surface-1)]">
         <span className="text-2xl font-serif">{Math.round(displayValue)}%</span>
-        {label ? <span className="text-sm font-semibold text-ink/60">{label}</span> : null}
+        {label ? <span className="text-sm font-semibold opacity-70">{label}</span> : null}
       </div>
     </div>
   );

@@ -30,9 +30,9 @@ interface ToastContextValue {
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
 
 const toneStyles: Record<ToastTone, string> = {
-  info: 'border-primary/20 bg-paper',
-  success: 'border-emerald-400/60 bg-emerald-50 text-emerald-900',
-  error: 'border-red-400/60 bg-red-50 text-red-900',
+  info: 'border-[var(--border)] bg-surface-1 c-on-surface-1',
+  success: 'border-[var(--border)] bg-secondary c-on-secondary',
+  error: 'border-[var(--border)] bg-accent c-on-accent',
 };
 
 const toneIcon: Record<ToastTone, string> = {
@@ -96,7 +96,7 @@ export function ToastViewport() {
             role="status"
             aria-live="polite"
             className={cn(
-              'pointer-events-auto flex w-full max-w-sm flex-col gap-2 rounded-2xl border px-4 py-3 text-ink shadow-md focus-within:outline-none focus-within:ring-4 focus-within:ring-accent/30',
+              'pointer-events-auto flex w-full max-w-sm flex-col gap-2 rounded-2xl border px-4 py-3 shadow-md focus-within:outline-none focus-within:ring-4 focus-within:ring-[var(--color-accent)]/30',
               toneStyles[toast.tone ?? 'info'],
             )}
           >
@@ -106,7 +106,7 @@ export function ToastViewport() {
               </span>
               <div className="flex-1 space-y-1">
                 <p className="font-semibold text-lg">{toast.title}</p>
-                {toast.description ? <p className="text-base text-ink/70">{toast.description}</p> : null}
+                {toast.description ? <p className="text-base opacity-80">{toast.description}</p> : null}
               </div>
               <button
                 type="button"

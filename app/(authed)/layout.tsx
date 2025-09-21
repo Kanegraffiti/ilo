@@ -30,7 +30,7 @@ export default function AuthedLayout({ children }: { children: React.ReactNode }
 
   return (
     <ThemeProvider>
-      <div className="flex min-h-screen flex-col bg-paper text-ink">
+      <div className="flex min-h-screen flex-col bg-paper c-on-paper">
         <TopAppBar
           streakDays={7}
           onNotificationsClick={() =>

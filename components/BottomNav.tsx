@@ -34,7 +34,7 @@ export function BottomNav({ items = DEFAULT_ITEMS, className }: BottomNavProps) 
   return (
     <nav
       className={cn(
-        'fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-paper/95 backdrop-blur-md shadow-[0_-6px_16px_rgba(0,0,0,0.08)] md:hidden',
+        'fixed inset-x-0 bottom-0 z-50 border-t border-[var(--border)] bg-surface-1 c-on-surface-1 backdrop-blur-md shadow-[0_-6px_16px_rgba(0,0,0,0.08)] supports-[backdrop-filter]:bg-surface-1/90 md:hidden',
         className,
       )}
       aria-label="Primary"
@@ -48,8 +48,8 @@ export function BottomNav({ items = DEFAULT_ITEMS, className }: BottomNavProps) 
                 <Link
                   href={item.href}
                   className={cn(
-                    'flex h-16 flex-col items-center justify-center gap-1 text-sm font-semibold focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40',
-                    isActive ? 'text-primary' : 'text-ink/70 hover:text-primary',
+                    'flex h-16 flex-col items-center justify-center gap-1 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40',
+                    isActive ? 'text-[var(--color-primary)]' : 'opacity-80 hover:text-[var(--color-primary)]',
                   )}
                   aria-current={isActive ? 'page' : undefined}
                 >

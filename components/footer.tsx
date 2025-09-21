@@ -1,5 +1,7 @@
-import Image from 'next/image';
+import BrandLogo from '@/components/BrandLogo';
 import Link from 'next/link';
+import { withContrast } from '@/components/withContrast';
+import type { HTMLAttributes } from 'react';
 
 type FooterLink = {
   label: string;
@@ -143,29 +145,31 @@ function SproutAccent({ className = 'h-10 w-full max-w-xs text-primary/70' }: { 
   );
 }
 
+const FooterShell = withContrast((props: HTMLAttributes<HTMLElement>) => <footer {...props} />, 'surface-2');
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative mt-24 overflow-hidden bg-[#FFF8F1] text-ink">
+    <FooterShell className="relative mt-24 overflow-hidden bg-surface-2">
       <div className="-mb-12">
         <MeadowScene className="h-48 md:h-56" />
       </div>
       <div className="mx-auto max-w-6xl px-6 pb-12 pt-6 md:pt-8">
         <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div className="space-y-5">
-            <Link href="/" className="inline-flex items-center gap-3 text-ink">
-              <Image src="/logo/tortoise.svg" alt="Ìlọ̀" width={48} height={48} className="h-12 w-12" />
+            <div className="flex items-center gap-3">
+              <BrandLogo size={48} className="inline-flex" title="Ìlọ̀ home" />
               <span className="font-serif text-3xl">Ìlọ̀</span>
-            </Link>
-            <p className="max-w-sm text-base text-ink/75">
+            </div>
+            <p className="max-w-sm text-base opacity-80">
               Playful Yorùbá learning that grows with every child. Stories, songs, and laughter lead the way.
             </p>
             <SproutAccent />
           </div>
           {SECTIONS.map((section) => (
             <div key={section.heading} className="space-y-4">
-              <p className="font-title text-lg text-ink/80">{section.heading}</p>
-              <ul className="space-y-3 text-sm text-ink/70">
+              <p className="font-title text-lg opacity-90">{section.heading}</p>
+              <ul className="space-y-3 text-sm opacity-80">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     {link.external ? (
@@ -173,12 +177,15 @@ export default function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="transition-colors hover:text-primary focus-visible:underline"
+                        className="transition-colors hover:text-[var(--color-primary)] focus-visible:underline"
                       >
                         {link.label}
                       </a>
                     ) : (
-                      <Link href={link.href} className="transition-colors hover:text-primary focus-visible:underline">
+                      <Link
+                        href={link.href}
+                        className="transition-colors hover:text-[var(--color-primary)] focus-visible:underline"
+                      >
                         {link.label}
                       </Link>
                     )}
@@ -188,21 +195,21 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-4 border-t border-ink/10 pt-6 text-sm text-ink/60 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-[var(--border)] pt-6 text-sm opacity-80 md:flex-row md:items-center md:justify-between">
           <p>© {year} Ìlọ̀. Sprouting smiles from Lagos to the world.</p>
           <div className="flex flex-wrap items-center gap-4">
-            <Link href="/privacy" className="transition-colors hover:text-primary focus-visible:underline">
+            <Link href="/privacy" className="transition-colors hover:text-[var(--color-primary)] focus-visible:underline">
               Privacy
             </Link>
-            <Link href="/terms" className="transition-colors hover:text-primary focus-visible:underline">
+            <Link href="/terms" className="transition-colors hover:text-[var(--color-primary)] focus-visible:underline">
               Terms
             </Link>
-            <Link href="/status" className="transition-colors hover:text-primary focus-visible:underline">
+            <Link href="/status" className="transition-colors hover:text-[var(--color-primary)] focus-visible:underline">
               Status
             </Link>
           </div>
         </div>
       </div>
-    </footer>
+    </FooterShell>
   );
 }

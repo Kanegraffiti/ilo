@@ -10,9 +10,9 @@ export default function ProverbRotator() {
   }, []);
   const p = proverbs[index];
   return (
-    <div className="bg-accent text-ink py-4 text-center">
+    <div className="bg-accent c-on-accent py-4 text-center">
       <p className="font-display">{p.text}</p>
-      <p className="text-sm">{p.meaning}</p>
+      <p className="text-sm opacity-90">{p.meaning}</p>
     </div>
   );
 }

@@ -21,9 +21,9 @@ export function OfflineNotice() {
   if (online) return null;
 
   return (
-    <Card className="border border-dashed border-accent/40 bg-accent/10" bodyClassName="space-y-2">
-      <h2 className="text-lg font-semibold text-ink">Offline mode</h2>
-      <p className="text-ink/70">Text is ready from cache. Media will appear when you’re back online.</p>
+    <Card className="border border-dashed border-[var(--color-accent)]/60 bg-accent c-on-accent" bodyClassName="space-y-2">
+      <h2 className="text-lg font-semibold">Offline mode</h2>
+      <p className="opacity-90">Text is ready from cache. Media will appear when you’re back online.</p>
     </Card>
   );
 }

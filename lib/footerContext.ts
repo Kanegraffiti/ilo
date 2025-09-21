@@ -263,7 +263,7 @@ export async function getFooterModel({
   let primaryCta: FooterModel['primaryCta'];
   switch (routeKind) {
     case 'landing':
-      primaryCta = { href: '/auth/signup', label: 'Get started', icon: '✨' };
+      primaryCta = { href: '/auth/signup', label: 'Join Ìlọ̀', icon: '✨' };
       break;
     case 'lesson':
       primaryCta = {

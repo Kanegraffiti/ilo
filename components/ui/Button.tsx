@@ -5,11 +5,13 @@ import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { motion } from 'framer-motion';
 import NextLink from 'next/link';
-import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import { forwardRef, useMemo } from 'react';
 
+const BUTTON_RADIUS = '28';
+
 const baseStyles =
-  'relative inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-2xl r-xl font-semibold shadow-md transition-colors transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] active:scale-[0.98]';
+  'relative inline-flex min-h-[44px] items-center justify-center gap-2 whitespace-nowrap rounded-[28px] font-semibold shadow-md transition-colors transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] active:scale-[0.98]';
 
 export const buttonVariants = cva(baseStyles, {
   variants: {
@@ -19,9 +21,9 @@ export const buttonVariants = cva(baseStyles, {
       secondary:
         'bg-secondary c-on-secondary hover:bg-secondary hover:shadow-lg focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
       ghost:
-        'b-border bg-transparent text-[var(--on-paper)] shadow-none hover:bg-[var(--surface-2)] focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
+        'b-border bg-transparent c-on-surface-1 shadow-none hover:bg-[var(--surface-2)] focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
       danger:
-        'bg-red-600 text-white hover:bg-red-600 focus-visible:ring-red-500 disabled:pointer-events-none disabled:opacity-60',
+        'bg-accent c-on-accent hover:bg-accent focus-visible:ring-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-60',
     },
     size: {
       md: 'px-4 py-2.5 text-lg',
@@ -63,6 +65,7 @@ const MotionButton = motion(
       href,
       disabled,
       onClick,
+      style,
       ...rest
     },
     ref,
@@ -84,6 +87,8 @@ const MotionButton = motion(
           <motion.a
             {...motionProps}
             className={linkClass}
+            data-radius-px={BUTTON_RADIUS}
+            style={{ borderRadius: `${BUTTON_RADIUS}px`, ...(style as CSSProperties | undefined) }}
             aria-disabled={isDisabled}
             tabIndex={isDisabled ? -1 : undefined}
             onClick={(event) => {
@@ -120,6 +125,8 @@ const MotionButton = motion(
         className={cn(buttonVariants({ variant, size, pulse }), className)}
         disabled={disabled}
         onClick={onClick as MouseEventHandler<HTMLButtonElement>}
+        data-radius-px={BUTTON_RADIUS}
+        style={{ borderRadius: `${BUTTON_RADIUS}px`, ...(style as CSSProperties | undefined) }}
         {...(restProps as Record<string, unknown>)}
       >
         {leadingIcon ? (

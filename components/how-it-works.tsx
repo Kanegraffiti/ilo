@@ -8,16 +8,16 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="container mx-auto py-12">
-      <h2 className="text-center font-display text-3xl mb-8">How It Works</h2>
+    <section className="mx-auto max-w-screen-lg bg-paper c-on-paper py-12">
+      <h2 className="mb-8 text-center font-display text-3xl">How It Works</h2>
       <div className="grid md:grid-cols-3 gap-6">
         {steps.map((s, i) => (
           <Card key={s.title} className="text-center">
-            <div className="mx-auto mb-4 h-10 w-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">
+            <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary c-on-primary font-bold">
               {i + 1}
             </div>
-            <h3 className="font-semibold mb-2">{s.title}</h3>
-            <p className="text-sm text-ink">{s.text}</p>
+            <h3 className="mb-2 font-semibold">{s.title}</h3>
+            <p className="text-sm opacity-80">{s.text}</p>
           </Card>
         ))}
       </div>

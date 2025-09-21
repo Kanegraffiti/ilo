@@ -51,14 +51,14 @@ export default function KidsPage() {
   };
 
   return (
-    <motion.div {...pageMotion} className="space-y-8">
+    <motion.div {...pageMotion} className="space-y-8 bg-paper c-on-paper">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <Chip tone="accent" size="sm">
             Family crew
           </Chip>
           <h1 className="text-4xl font-serif">Kids</h1>
-          <p className="text-lg text-ink/70">Create profiles so each child earns their own badges.</p>
+          <p className="text-lg opacity-80">Create profiles so each child earns their own badges.</p>
         </div>
         <Button variant="secondary" size="md" onClick={() => setModalOpen(true)}>
           + Add child
@@ -67,14 +67,14 @@ export default function KidsPage() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {kids.map((kid) => (
-          <Card key={kid.id} className="border border-ink/10 bg-white/85" bodyClassName="space-y-3">
+          <Card key={kid.id} bodyClassName="space-y-3">
             <div className="flex items-center gap-4">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-2xl">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary c-on-primary text-2xl">
                 {kid.name.charAt(0)}
               </span>
               <div>
                 <p className="text-2xl font-serif">{kid.name}</p>
-                <p className="text-lg text-ink/60">Age {kid.age}</p>
+                <p className="text-lg opacity-70">Age {kid.age}</p>
               </div>
             </div>
             <div className="flex gap-2">
@@ -85,7 +85,7 @@ export default function KidsPage() {
                 Avatar saved
               </Chip>
             </div>
-            <p className="text-ink/70">Keep streaks by practicing together for at least 5 minutes daily.</p>
+            <p className="opacity-80">Keep streaks by practicing together for at least 5 minutes daily.</p>
           </Card>
         ))}
       </div>
@@ -125,7 +125,7 @@ export default function KidsPage() {
             ))}
           </Select>
           <div className="space-y-3">
-            <p className="text-base font-semibold text-ink">Pick an avatar</p>
+            <p className="text-base font-semibold">Pick an avatar</p>
             <AvatarPicker
               selectedId={form.avatar}
               onSelect={(avatar) => setForm((prev) => ({ ...prev, avatar }))}

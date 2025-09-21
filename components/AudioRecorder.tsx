@@ -229,12 +229,12 @@ export function AudioRecorder({ lessonId, onSubmit, className }: AudioRecorderPr
   };
 
   return (
-    <Card className={cn('bg-white/90', className)}>
+    <Card className={cn(className)}>
       <div className="space-y-4">
         <header className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h3 className="text-2xl font-serif">Pronunciation practice</h3>
-            <p className="text-lg text-ink/70">Press the tortoise button and speak clearly. Ẹ káàárọ̀!</p>
+            <p className="text-lg text-[var(--on-surface-1)]/70">Press the tortoise button and speak clearly. Ẹ káàárọ̀!</p>
           </div>
           {queuedCount > 0 ? (
             <Chip tone="warning" size="sm">
@@ -247,8 +247,8 @@ export function AudioRecorder({ lessonId, onSubmit, className }: AudioRecorderPr
             type="button"
             onClick={state === 'recording' ? stopRecording : startRecording}
             className={cn(
-              'relative flex h-32 w-32 items-center justify-center rounded-full border-4 border-primary bg-primary/90 text-paper shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40',
-              state === 'recording' ? 'animate-pulse bg-accent/90' : '',
+              'relative flex h-32 w-32 items-center justify-center rounded-full border-4 border-primary bg-primary c-on-primary shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40',
+              state === 'recording' ? 'animate-pulse bg-accent c-on-accent' : '',
             )}
             aria-label={state === 'recording' ? 'Stop recording' : 'Start recording'}
           >
@@ -256,11 +256,11 @@ export function AudioRecorder({ lessonId, onSubmit, className }: AudioRecorderPr
             {state === 'recording' && !prefersReducedMotion ? (
               <span
                 aria-hidden="true"
-                className="absolute inset-0 rounded-full border-4 border-accent/30 animate-ping"
+                className="absolute inset-0 rounded-full border-4 border-[var(--color-accent)]/30 animate-ping"
               />
             ) : null}
           </button>
-          <p className="text-lg text-ink/70">
+          <p className="text-lg text-[var(--on-surface-1)]/70">
             {permissionDenied
               ? 'Microphone access is blocked — allow access in your browser settings.'
               : state === 'recording'

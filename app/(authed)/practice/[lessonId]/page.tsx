@@ -43,13 +43,13 @@ export default function PracticePage({ params }: { params: { lessonId: string } 
   };
 
   return (
-    <motion.div {...pageMotion} className="space-y-8">
+    <motion.div {...pageMotion} className="space-y-8 bg-paper c-on-paper">
       <header className="space-y-3">
         <Chip tone="accent" size="sm">
           Practice hub
         </Chip>
         <h1 className="text-4xl font-serif capitalize">{lessonTitle}</h1>
-        <p className="text-lg text-ink/70">Choose an activity below—record your voice or try the mini quiz.</p>
+        <p className="text-lg opacity-80">Choose an activity below—record your voice or try the mini quiz.</p>
       </header>
 
       <div role="tablist" aria-label="Practice activities" className="flex gap-3">
@@ -66,13 +66,13 @@ export default function PracticePage({ params }: { params: { lessonId: string } 
       </div>
 
       {tab === 'pronunciation' ? (
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-6">
-          <p className="text-lg text-ink/70">Press record, say the greeting slowly, then submit. We’ll sync when you’re back online.</p>
+        <Card bodyClassName="space-y-6">
+          <p className="text-lg opacity-80">Press record, say the greeting slowly, then submit. We’ll sync when you’re back online.</p>
           <AudioRecorder lessonId={params.lessonId} onSubmit={handleRecordingSubmit} />
         </Card>
       ) : (
-        <Card className="border border-ink/10 bg-white/85" bodyClassName="space-y-6">
-          <p className="text-lg text-ink/70">Answer each question to unlock a celebration. Use the tone keypad for Yorùbá spelling.</p>
+        <Card bodyClassName="space-y-6">
+          <p className="text-lg opacity-80">Answer each question to unlock a celebration. Use the tone keypad for Yorùbá spelling.</p>
           <QuizBlock
             items={QUIZ_BANK}
             onComplete={(score) => {

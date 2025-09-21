@@ -39,13 +39,13 @@ export default function InstallPage() {
   const pageMotion = usePageEnter();
 
   return (
-    <motion.div {...pageMotion} className="space-y-10">
+    <motion.div {...pageMotion} className="space-y-10 bg-paper c-on-paper">
       <div className="space-y-3">
         <Chip tone="accent" size="sm">
           Ready to install?
         </Chip>
         <h1 className="text-4xl font-serif">Keep Ìlọ̀ one tap away</h1>
-        <p className="text-xl text-ink/70">
+        <p className="text-xl opacity-80">
           Add the PWA to your device and keep lessons cached for offline adventures. No app store required.
         </p>
       </div>
@@ -53,14 +53,13 @@ export default function InstallPage() {
         {STEPS.map((step) => (
           <Card
             key={step.id}
-            className="border border-ink/10 bg-white/85"
             bodyClassName="space-y-4"
             header={<span className="text-xl font-serif">{step.platform}</span>}
           >
-            <ol className="space-y-3 text-lg text-ink/80">
+            <ol className="space-y-3 text-lg opacity-90">
               {step.instructions.map((text, index) => (
                 <li key={text} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
+                  <span className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary c-on-primary font-semibold">
                     {index + 1}
                   </span>
                   <span>{text}</span>
@@ -70,9 +69,9 @@ export default function InstallPage() {
           </Card>
         ))}
       </div>
-      <Card className="border border-ink/10 bg-secondary/10" bodyClassName="space-y-3">
+      <Card className="bg-surface-2 c-on-surface-2" bodyClassName="space-y-3">
         <h2 className="text-2xl font-serif">Pro tip for guardians</h2>
-        <p className="text-lg text-ink/80">
+        <p className="text-lg opacity-90">
           After installing, open Ìlọ̀ once with Wi-Fi so new lessons download. When your child taps the tortoise offline, cached stories, vocabulary, and quizzes stay ready.
         </p>
       </Card>

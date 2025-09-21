@@ -65,7 +65,7 @@ export function Modal({ title, description, isOpen, onClose, children, actions, 
           <motion.button
             type="button"
             aria-label="Close"
-            className="absolute inset-0 h-full w-full cursor-default bg-ink/40"
+            className="absolute inset-0 h-full w-full cursor-default bg-[var(--on-paper)]/40"
             onClick={onClose}
             tabIndex={-1}
           />
@@ -76,7 +76,7 @@ export function Modal({ title, description, isOpen, onClose, children, actions, 
             aria-labelledby={titleId}
             aria-describedby={descriptionId}
             className={cn(
-              'relative w-full max-w-xl rounded-2xl bg-paper p-6 text-ink shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-accent/40',
+              'relative w-full max-w-xl rounded-2xl bg-surface-1 c-on-surface-1 p-6 shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40',
               className,
             )}
           >
@@ -84,11 +84,11 @@ export function Modal({ title, description, isOpen, onClose, children, actions, 
               Modal focus sentinel
             </div>
             <header className="space-y-2 pb-4">
-              <h2 id={titleId} className="text-2xl font-serif text-ink">
+              <h2 id={titleId} className="text-2xl font-serif">
                 {title}
               </h2>
               {description ? (
-                <p id={descriptionId} className="text-base text-ink/70">
+                <p id={descriptionId} className="text-base opacity-80">
                   {description}
                 </p>
               ) : null}

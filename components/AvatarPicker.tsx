@@ -133,7 +133,7 @@ export function AvatarPicker({ selectedId, onSelect, options = AVATAR_OPTIONS, c
             {...pressable}
             onClick={() => onSelect(option.id)}
             className={cn(
-              'flex min-h-[120px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-white/90 p-4 text-center shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/40',
+              'flex min-h-[120px] flex-col items-center justify-center gap-3 rounded-2xl border-2 border-transparent bg-surface-1 c-on-surface-1 p-4 text-center shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40',
               isSelected ? 'border-primary shadow-md' : 'hover:border-primary/60',
             )}
             role="radio"
@@ -141,7 +141,7 @@ export function AvatarPicker({ selectedId, onSelect, options = AVATAR_OPTIONS, c
             aria-label={option.label}
           >
             <div aria-hidden="true">{option.render}</div>
-            <span className="text-base font-semibold text-ink/80">{option.label}</span>
+            <span className="text-base font-semibold opacity-90">{option.label}</span>
           </motion.button>
         );
       })}

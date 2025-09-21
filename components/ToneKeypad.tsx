@@ -59,14 +59,14 @@ export function ToneKeypad({ targetId, onInsert, className, toneKeys = TONE_KEYS
   );
 
   return (
-    <div className={cn('flex flex-wrap gap-3 rounded-2xl bg-secondary/5 p-3', className)} aria-label="Yorùbá tone keypad">
+    <div className={cn('flex flex-wrap gap-3 rounded-2xl bg-surface-2 c-on-surface-2 p-3', className)} aria-label="Yorùbá tone keypad">
       {toneKeys.map((key) => (
         <motion.button
           key={key.label}
           type="button"
           {...pressable}
           onClick={() => handleInsert(key.value)}
-          className="min-h-[56px] min-w-[56px] rounded-2xl bg-white px-4 py-3 text-lg font-bold text-ink shadow-sm transition hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(211,126,44,0.4)]"
+          className="min-h-[56px] min-w-[56px] rounded-2xl bg-surface-1 c-on-surface-1 px-4 py-3 text-lg font-bold shadow-sm transition hover:bg-surface-3 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/40"
         >
           {key.label}
         </motion.button>

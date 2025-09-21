@@ -1,15 +1,18 @@
-import React from 'react';
-import { Baloo_2 } from 'next/font/google';
+'use client';
+import Image from 'next/image';
+import Link from 'next/link';
 
-const baloo = Baloo_2({ subsets: ['latin'] });
+export type BrandLogoProps = { size?: number; className?: string; title?: string };
 
-export default function BrandLogo({ size = 48 }: { size?: number }) {
+export default function BrandLogo({ size = 28, className, title = 'Ìlọ̀ home' }: BrandLogoProps) {
   return (
-    <span
-      className={`${baloo.className} font-bold`}
-      style={{ fontSize: size }}
+    <Link
+      href="/"
+      aria-label="Go to home"
+      className={`inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--paper)] ${className || ''}`.trim()}
     >
-      Ìlọ̀
-    </span>
+      <Image src="/brand/ilo-tortoise.svg" width={size} height={size} alt="Ìlọ̀ tortoise logo" priority />
+      <span className="sr-only">{title}</span>
+    </Link>
   );
 }

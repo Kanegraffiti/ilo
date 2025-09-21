@@ -27,17 +27,17 @@ export default function AdminLessonsPage() {
   const pageMotion = usePageEnter();
 
   return (
-    <motion.div {...pageMotion} className="space-y-8">
+    <motion.div {...pageMotion} className="space-y-8 bg-paper c-on-paper">
       <header className="space-y-3">
         <Chip tone="secondary" size="sm">
           Admin view
         </Chip>
         <h1 className="text-4xl font-serif">Recent published lessons</h1>
-        <p className="text-lg text-ink/70">Readonly snapshot of the last 30 lessons for quick QA checks.</p>
+        <p className="text-lg opacity-80">Readonly snapshot of the last 30 lessons for quick QA checks.</p>
       </header>
-      <Card className="border border-ink/10 bg-white/85" bodyClassName="overflow-x-auto">
-        <table className="min-w-full divide-y divide-ink/10 text-left">
-          <thead className="text-sm uppercase tracking-wide text-ink/60">
+      <Card bodyClassName="overflow-x-auto">
+        <table className="min-w-full divide-y divide-[var(--border)] text-left">
+          <thead className="text-sm uppercase tracking-wide opacity-70">
             <tr>
               <th className="px-4 py-3">Title</th>
               <th className="px-4 py-3">Module</th>
@@ -46,17 +46,17 @@ export default function AdminLessonsPage() {
               <th className="px-4 py-3 text-right">Vocab</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-ink/10 text-lg">
+          <tbody className="divide-y divide-[var(--border)] text-lg">
             {LESSONS.map((lesson) => (
               <tr key={lesson.id}>
                 <td className="px-4 py-4">
                   <div className="space-y-1">
-                    <span className="font-semibold text-ink">{lesson.title}</span>
-                    <p className="text-sm text-ink/60">ID: {lesson.id}</p>
+                    <span className="font-semibold">{lesson.title}</span>
+                    <p className="text-sm opacity-70">ID: {lesson.id}</p>
                   </div>
                 </td>
-                <td className="px-4 py-4 text-ink/70">{lesson.module}</td>
-                <td className="px-4 py-4 text-ink/70">
+                <td className="px-4 py-4 opacity-80">{lesson.module}</td>
+                <td className="px-4 py-4 opacity-80">
                   {new Date(lesson.publishedAt).toLocaleDateString(undefined, {
                     month: 'short',
                     day: 'numeric',

@@ -12,7 +12,7 @@ interface Props {
 export default function Hero({ title, tagline, bullets }: Props) {
   const { track } = useAnalytics();
   return (
-    <section className="relative hero overflow-hidden py-12">
+    <section className="hero relative overflow-hidden bg-paper c-on-paper py-12">
       {/* decorative background */}
       <div aria-hidden className="absolute inset-0 gradient pointer-events-none -z-10" />
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-8">
@@ -25,17 +25,17 @@ export default function Hero({ title, tagline, bullets }: Props) {
               <li key={b}>{b}</li>
             ))}
           </ul>
-          <div className="flex gap-4 justify-center md:justify-start mt-4">
+          <div className="mt-4 flex gap-4 justify-center md:justify-start">
             <Link
               href="/features"
-              className="px-5 py-3 rounded-full bg-brand text-white font-bold hover:bg-brand/90 focus:outline-none focus:ring"
+              className="rounded-full bg-primary c-on-primary px-5 py-3 font-bold transition hover:bg-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/50"
               onClick={() => track('cta_features')}
             >
               Get Started
             </Link>
             <Link
               href="/pricing"
-              className="px-5 py-3 rounded-full border border-brand text-brand font-bold hover:bg-brand/10 focus:outline-none focus:ring"
+              className="rounded-full border border-[var(--color-primary)] px-5 py-3 font-bold text-[var(--color-primary)] transition hover:bg-[var(--color-primary)]/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--color-accent)]/50"
               onClick={() => track('cta_pricing')}
             >
               See Plans
