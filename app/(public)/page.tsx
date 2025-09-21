@@ -1,5 +1,6 @@
 'use client';
 
+import type { IconName } from '@/components/icons/icons';
 import { FeatureCard } from '@/components/feature-card';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -7,21 +8,21 @@ import { Chip } from '@/components/ui/Chip';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
 
-const FEATURES = [
+const FEATURES: Array<{ title: string; body: string; icon: IconName }> = [
   {
     title: 'Lessons that feel like play',
     body: 'Ọmọde kọ ẹ̀kọ́ pẹ̀lú fọ́nran, orin, àti ìtàn Ayélújára. Short bursts keep focus and joy.',
-    icon: '📚',
+    icon: 'books',
   },
   {
     title: 'Quizzes & badges',
     body: 'Earn tortoise shells for each challenge. Immediate feedback says “Ẹ ṣe!” when you nail it.',
-    icon: '🎉',
+    icon: 'party',
   },
   {
     title: 'Culture stories',
     body: 'Hear elders share proverbs and pro-tips about everyday Yorùbá life.',
-    icon: '🐢',
+    icon: 'tortoise',
   },
 ];
 

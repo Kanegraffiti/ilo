@@ -1,5 +1,6 @@
 'use client';
 
+import Icon from '@/components/icons/Icon';
 import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { cn } from '@/lib/utils';
@@ -42,8 +43,8 @@ export function TopAppBar({
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
           <Link href="/home" className="flex items-center gap-3 text-2xl font-serif text-ink">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-3xl" aria-hidden="true">
-              🐢
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-[var(--color-primary)]" aria-hidden="true">
+              <Icon name="tortoise" size={28} />
             </span>
             <span className="leading-none">
               Ìlọ̀
@@ -55,7 +56,8 @@ export function TopAppBar({
           {children}
           {typeof streakDays === 'number' ? (
             <Chip tone="accent" size="sm">
-              🔥 {streakDays} day streak
+              <Icon name="star" size={14} color="var(--on-accent)" className="shrink-0" />
+              {streakDays} day streak
             </Chip>
           ) : null}
           <Button

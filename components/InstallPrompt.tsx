@@ -1,5 +1,6 @@
 'use client';
 
+import Icon from '@/components/icons/Icon';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { useCardPop, usePrefersReducedMotion } from '@/lib/anim';
@@ -67,8 +68,11 @@ export function InstallPrompt() {
       <motion.div {...(!reduced ? cardMotion : {})}>
         <Card className="max-w-xl">
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
-            <div className="flex h-28 w-28 items-center justify-center rounded-full bg-primary/10 text-4xl" aria-hidden="true">
-              🐢
+            <div
+              className="flex h-28 w-28 items-center justify-center rounded-full bg-primary/10 text-[var(--color-primary)]"
+              aria-hidden="true"
+            >
+              <Icon name="tortoise" size={48} color="var(--color-primary)" />
             </div>
             <div className="space-y-2 text-left">
               <h3 className="text-2xl font-serif">Install Ìlọ̀ for quick learning</h3>

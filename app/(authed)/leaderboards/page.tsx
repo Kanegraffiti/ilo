@@ -1,13 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import Icon from '@/components/icons/Icon';
+import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
-import { Select } from '@/components/ui/Select';
-import { Button } from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { Select } from '@/components/ui/Select';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
 
 interface Entry {
   id: string;
@@ -83,7 +84,7 @@ export default function LeaderboardsPage() {
 
       {data.length === 0 ? (
         <EmptyState
-          icon="📭"
+          icon={<Icon name="help" size={36} color="var(--on-surface-1)" aria-hidden />}
           title="No explorers yet"
           description="Invite kids to start the module to see points roll in."
           action={<Button href="/kids">Add a child</Button>}

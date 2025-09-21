@@ -1,7 +1,8 @@
 'use client';
 
-import { Card } from '@/components/ui/Card';
+import Icon from '@/components/icons/Icon';
 import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { ProgressRing } from '@/components/ui/ProgressRing';
@@ -45,7 +46,8 @@ export default function HomePage() {
         >
           <ProgressRing value={82} label="Goal" />
           <Chip tone="accent" size="md">
-            🔥 12-day streak
+            <Icon name="star" size={16} color="var(--on-accent)" className="shrink-0" aria-hidden />
+            12-day streak
           </Chip>
           <p className="text-center text-lg text-ink/70">Only 8 minutes left to meet today’s goal. Ẹ má ṣe ṣiyemeji!</p>
         </Card>

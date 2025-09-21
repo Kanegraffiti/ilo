@@ -1,15 +1,15 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { useCallback, useMemo, useState, type ComponentType } from 'react';
-
+import Icon from '@/components/icons/Icon';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { useToast } from '@/components/ui/Toast';
 import { useCardPop, usePrefersReducedMotion } from '@/lib/anim';
 import type { FooterModel, FooterProgress } from '@/lib/footerContext';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/components/ui/Toast';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useCallback, useMemo, useState, type ComponentType } from 'react';
 
 type MascotComponent = ComponentType<{ className?: string }>;
 
@@ -28,7 +28,10 @@ export function GreetingBar({ greeting, childName, Mascot }: GreetingBarProps) {
         <Mascot className="h-10 w-10" />
         <div className="space-y-1">
           <p className="text-sm font-semibold uppercase tracking-wide text-[var(--on-surface-2)]/70">Friendly tortoise</p>
-          <p className="text-2xl font-serif leading-snug">{welcomeLine} <span aria-hidden="true">👋</span></p>
+          <p className="text-2xl font-serif leading-snug">
+            {welcomeLine}{' '}
+            <Icon name="party" size={20} color="var(--on-surface-2)" className="inline-flex align-middle" aria-hidden />
+          </p>
         </div>
       </div>
       <p className="text-base text-[var(--on-surface-2)]/80">
@@ -52,16 +55,16 @@ export function PrimaryCta({ cta }: { cta?: FooterModel['primaryCta'] }) {
           Ready for a playful boost? Tap the big button below to keep learning.
         </p>
         {cta ? (
-          <Button href={cta.href} size="xl" className="w-full justify-between">
-            <span className="flex items-center gap-2">
-              {cta.icon ? (
-                <span aria-hidden="true" className="text-2xl">
-                  {cta.icon}
-                </span>
-              ) : null}
-              <span>{cta.label}</span>
-            </span>
-            <span aria-hidden="true">→</span>
+          <Button
+            href={cta.href}
+            size="xl"
+            className="w-full justify-between"
+            leadingIcon={
+              cta.icon ? <Icon name={cta.icon} size={22} color="var(--on-primary)" className="shrink-0" /> : undefined
+            }
+            trailingIcon={<Icon name="chevron-right" size={18} color="var(--on-primary)" className="shrink-0" />}
+          >
+            {cta.label}
           </Button>
         ) : (
           <div className="flex min-h-[56px] items-center justify-center rounded-2xl border border-dashed border-[var(--on-surface-2)]/25 px-4 text-lg text-[var(--on-surface-2)]/70">
@@ -96,8 +99,8 @@ export function FunFactCard({ data }: { data?: FooterModel['funFact'] }) {
           href={data?.href ?? '/facts'}
           className="inline-flex min-h-[44px] items-center gap-2 rounded-2xl bg-secondary px-4 py-2 text-lg font-semibold c-on-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-2)]"
         >
-          Read the full fact
-          <span aria-hidden="true">🌿</span>
+          <span>Read the full fact</span>
+          <Icon name="books" size={18} color="var(--on-secondary)" className="shrink-0" aria-hidden />
         </Link>
       </div>
     </motion.div>
@@ -321,7 +324,7 @@ export function StatusPills({ offline, showInstall, onInstallClick, installHref 
     <div className="flex flex-wrap gap-2" aria-live="polite">
       {offline ? (
         <span className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-secondary px-4 text-sm font-semibold c-on-secondary">
-          <span aria-hidden="true">📡</span>
+          <Icon name="globe" size={16} color="var(--on-secondary)" className="shrink-0" aria-hidden />
           Offline — changes will sync
         </span>
       ) : null}
@@ -332,7 +335,7 @@ export function StatusPills({ offline, showInstall, onInstallClick, installHref 
             onClick={onInstallClick}
             className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold c-on-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-1)]"
           >
-            <span aria-hidden="true">📲</span>
+            <Icon name="install" size={18} color="var(--on-primary)" className="shrink-0" aria-hidden />
             Install Ìlọ̀
           </button>
         ) : (
@@ -340,7 +343,7 @@ export function StatusPills({ offline, showInstall, onInstallClick, installHref 
             href={installHref}
             className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold c-on-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-1)]"
           >
-            <span aria-hidden="true">📲</span>
+            <Icon name="install" size={18} color="var(--on-primary)" className="shrink-0" aria-hidden />
             Install Ìlọ̀
           </Link>
         )

@@ -1,5 +1,7 @@
 'use client';
 
+import Icon from '@/components/icons/Icon';
+import type { IconName } from '@/components/icons/icons';
 import { usePageEnter } from '@/lib/anim';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -35,10 +37,10 @@ const toneStyles: Record<ToastTone, string> = {
   error: 'border-red-400/60 bg-red-50 text-red-900',
 };
 
-const toneIcon: Record<ToastTone, string> = {
-  info: '⭐️',
-  success: '🎉',
-  error: '⚠️',
+const toneIcon: Record<ToastTone, IconName> = {
+  info: 'star',
+  success: 'party',
+  error: 'shield',
 };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -107,9 +109,13 @@ export function ToastViewport() {
             )}
           >
             <div className="flex items-start gap-3">
-              <span aria-hidden="true" className="text-2xl">
-                {toneIcon[toast.tone ?? 'info']}
-              </span>
+              <Icon
+                name={toneIcon[toast.tone ?? 'info']}
+                size={24}
+                color="currentColor"
+                className="text-2xl"
+                aria-hidden
+              />
               <div className="flex-1 space-y-1">
                 <p className="font-semibold text-lg">{toast.title}</p>
                 {toast.description ? <p className="text-base text-ink/70">{toast.description}</p> : null}

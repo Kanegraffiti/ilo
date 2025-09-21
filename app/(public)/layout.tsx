@@ -1,10 +1,11 @@
-import type { ReactNode } from 'react';
-import Link from 'next/link';
+import Icon from '@/components/icons/Icon';
 import ThemeToggle from '@/components/ThemeToggle';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Button } from '@/components/ui/Button';
 import { InstallPrompt } from '@/components/InstallPrompt';
 import Footer from '@/components/footer/Footer';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -16,8 +17,11 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
         >
           <div className="mx-auto flex w-full max-w-screen-lg items-center justify-between gap-6 px-4 py-4">
             <Link href="/" className="flex items-center gap-3 text-2xl font-serif">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-3xl" aria-hidden="true">
-                🐢
+              <span
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-[var(--color-primary)]"
+                aria-hidden="true"
+              >
+                <Icon name="tortoise" size={28} color="var(--color-primary)" />
               </span>
               <span>
                 Ìlọ̀

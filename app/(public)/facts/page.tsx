@@ -1,16 +1,18 @@
 'use client';
 
+import Icon from '@/components/icons/Icon';
+import type { IconName } from '@/components/icons/icons';
+import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
 import { Modal } from '@/components/ui/Modal';
-import { Button } from '@/components/ui/Button';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 type Fact = {
   id: string;
-  emoji: string;
+  icon: IconName;
   title: string;
   summary: string;
   content: string;
@@ -19,7 +21,7 @@ type Fact = {
 const FACTS: Fact[] = [
   {
     id: 'drums',
-    emoji: '🥁',
+    icon: 'party',
     title: 'Talking drums speak Yorùbá tones',
     summary: 'Gángan drums can mimic speech—players match rising and falling tones to send messages.',
     content:
@@ -27,7 +29,7 @@ const FACTS: Fact[] = [
   },
   {
     id: 'tortoise',
-    emoji: '🐢',
+    icon: 'tortoise',
     title: 'Ijapa the storyteller',
     summary: 'The clever tortoise appears in folktales teaching patience, respect, and wit.',
     content:
@@ -35,7 +37,7 @@ const FACTS: Fact[] = [
   },
   {
     id: 'greetings',
-    emoji: '🌅',
+    icon: 'globe',
     title: 'Greetings change with the time of day',
     summary: 'Ẹ káàárọ̀ (good morning) becomes Ẹ káàsán (good afternoon) and Ẹ káalẹ́ (good evening).',
     content:
@@ -64,9 +66,7 @@ export default function FactsPage() {
             bodyClassName="space-y-4"
             header={
               <span className="flex items-center gap-3 text-xl font-serif">
-                <span className="text-3xl" aria-hidden="true">
-                  {fact.emoji}
-                </span>
+                <Icon name={fact.icon} size={28} color="var(--on-surface-1)" className="shrink-0" aria-hidden />
                 {fact.title}
               </span>
             }
