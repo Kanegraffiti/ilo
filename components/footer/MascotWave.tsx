@@ -1,14 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type { ComponentProps } from 'react';
+import type { SVGMotionProps } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import { usePrefersReducedMotion } from '@/lib/anim';
 
 export type MascotWaveProps = {
   className?: string;
-} & Omit<ComponentProps<'svg'>, 'className'>;
+} & Omit<SVGMotionProps<SVGSVGElement>, 'className'>;
 
 export default function MascotWave({ className, ...props }: MascotWaveProps) {
   const reduced = usePrefersReducedMotion();
