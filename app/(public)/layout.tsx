@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { InstallPrompt } from '@/components/InstallPrompt';
+import Footer from '@/components/footer/Footer';
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -49,19 +50,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
           <InstallPrompt />
         </div>
       </aside>
-      <footer className="border-t border-ink/10 bg-paper/90" role="contentinfo">
-        <div className="mx-auto flex w-full max-w-screen-lg flex-col gap-4 px-4 py-6 text-lg text-ink/70 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Ìlọ̀ • Yorùbá learning made joyful.</p>
-          <div className="flex gap-6">
-            <Link href="/help" className="hover:text-primary focus-visible:underline">
-              Contact
-            </Link>
-            <Link href="/legal/privacy" className="hover:text-primary focus-visible:underline">
-              Privacy
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
