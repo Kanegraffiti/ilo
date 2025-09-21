@@ -6,7 +6,10 @@ import { InstallPrompt } from '@/components/InstallPrompt';
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-paper text-ink">
-      <header className="border-b border-ink/10 bg-paper/90" role="banner">
+      <header
+        className="fixed inset-x-0 top-0 z-40 border-b border-ink/10 bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/80"
+        role="banner"
+      >
         <div className="mx-auto flex w-full max-w-screen-lg items-center justify-between gap-6 px-4 py-4">
           <Link href="/" className="flex items-center gap-3 text-2xl font-serif">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-3xl" aria-hidden="true">
@@ -38,7 +41,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main id="main-content" className="mx-auto w-full max-w-screen-lg flex-1 px-4 py-10" role="main">
+      <main id="main-content" className="mx-auto w-full max-w-screen-lg flex-1 px-4 pb-10 pt-28 md:pt-32" role="main">
         {children}
       </main>
       <aside className="border-t border-ink/10 bg-paper/95 px-4 py-8">

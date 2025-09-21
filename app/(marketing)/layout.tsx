@@ -10,7 +10,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
   return (
     <>
       <NavBar />
-      {children}
+      <main className="pt-24">{children}</main>
       <Footer />
       <CookieBanner />
       <FloatingWhatsApp />
