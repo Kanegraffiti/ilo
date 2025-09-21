@@ -1,5 +1,5 @@
+/* Light theme defaults */
 :root {
-  /* Base (light) */
   --color-primary: #9c5c2e;
   --on-primary: #ffffff;
   --color-secondary: #4a5b3f;
@@ -23,11 +23,38 @@
   --radius-xl: 1.25rem;
   --font-ui: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Apple Color Emoji', 'Segoe UI Emoji';
   --font-title: 'Noto Serif', Georgia, serif;
+
+  color-scheme: light;
 }
 
-/* High-contrast warm dark mode */
+/* Dark theme overrides when explicitly selected */
+:root[data-theme='dark'] {
+  --paper: #12100e;
+  --on-paper: #f5ede0;
+  --surface-1: #171411;
+  --on-surface-1: #f5ede0;
+  --surface-2: #1e1915;
+  --on-surface-2: #efe4d2;
+  --surface-3: #251f19;
+  --on-surface-3: #f2e7d6;
+
+  --color-primary: #b87949;
+  --on-primary: #0e0906;
+  --color-secondary: #5a6c50;
+  --on-secondary: #0e0d0b;
+  --color-accent: #e18b3f;
+  --on-accent: #0e0906;
+
+  --border: rgba(245, 237, 224, 0.16);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
+}
+
+/* Respect system preference when no explicit choice was made */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --paper: #12100e;
     --on-paper: #f5ede0;
     --surface-1: #171411;
@@ -37,7 +64,6 @@
     --surface-3: #251f19;
     --on-surface-3: #f2e7d6;
 
-    /* Slightly brighter brand hues for dark */
     --color-primary: #b87949;
     --on-primary: #0e0906;
     --color-secondary: #5a6c50;
@@ -48,6 +74,8 @@
     --border: rgba(245, 237, 224, 0.16);
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.6);
+
+    color-scheme: dark;
   }
 }
 
@@ -55,42 +83,55 @@
 .bg-paper {
   background: var(--paper);
 }
+
 .c-on-paper {
   color: var(--on-paper);
 }
+
 .bg-surface-1 {
   background: var(--surface-1);
 }
+
 .c-on-surface-1 {
   color: var(--on-surface-1);
 }
+
 .bg-surface-2 {
   background: var(--surface-2);
 }
+
 .c-on-surface-2 {
   color: var(--on-surface-2);
 }
+
 .bg-surface-3 {
   background: var(--surface-3);
 }
+
 .c-on-surface-3 {
   color: var(--on-surface-3);
 }
+
 .bg-primary {
   background: var(--color-primary);
 }
+
 .c-on-primary {
   color: var(--on-primary);
 }
+
 .bg-secondary {
   background: var(--color-secondary);
 }
+
 .c-on-secondary {
   color: var(--on-secondary);
 }
+
 .bg-accent {
   background: var(--color-accent);
 }
+
 .c-on-accent {
   color: var(--on-accent);
 }
@@ -98,12 +139,15 @@
 .b-border {
   border: 1px solid var(--border);
 }
+
 .r-xl {
   border-radius: var(--radius-xl);
 }
+
 .shadow-sm {
   box-shadow: var(--shadow-sm);
 }
+
 .shadow-md {
   box-shadow: var(--shadow-md);
 }
