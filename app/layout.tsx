@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import React from 'react';
+import { headers } from 'next/headers';
 import { Noto_Sans, Noto_Serif } from 'next/font/google';
 import { ToastProvider, ToastViewport } from '@/components/ui/Toast';
 
@@ -13,8 +14,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const headerList = headers();
+  const theme = headerList.get('x-ilo-theme');
+
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`} data-theme={theme ?? undefined}>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
