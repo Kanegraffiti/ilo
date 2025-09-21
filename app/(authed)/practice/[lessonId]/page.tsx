@@ -1,10 +1,11 @@
 'use client';
 
+import Icon from '@/components/icons/Icon';
 import { AudioRecorder } from '@/components/AudioRecorder';
 import { QuizBlock, type QuizItem } from '@/components/QuizBlock';
+import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
-import { Button } from '@/components/ui/Button';
 import { useToast } from '@/components/ui/Toast';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
@@ -57,11 +58,17 @@ export default function PracticePage({ params }: { params: { lessonId: string } 
           variant={tab === 'pronunciation' ? 'primary' : 'ghost'}
           size="md"
           onClick={() => setTab('pronunciation')}
+          leadingIcon={<Icon name="mic" size={18} />}
         >
-          🎧 Pronunciation
+          Pronunciation
         </Button>
-        <Button variant={tab === 'quiz' ? 'primary' : 'ghost'} size="md" onClick={() => setTab('quiz')}>
-          🎯 Quiz
+        <Button
+          variant={tab === 'quiz' ? 'primary' : 'ghost'}
+          size="md"
+          onClick={() => setTab('quiz')}
+          leadingIcon={<Icon name="practice" size={18} />}
+        >
+          Quiz
         </Button>
       </div>
 

@@ -1,17 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import Icon from '@/components/icons/Icon';
+import { AvatarPicker } from '@/components/AvatarPicker';
+import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
 import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
+import { Modal } from '@/components/ui/Modal';
 import { ProgressRing } from '@/components/ui/ProgressRing';
-import { AvatarPicker } from '@/components/AvatarPicker';
+import { Select } from '@/components/ui/Select';
 import { useToast } from '@/components/ui/Toast';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({ name: 'Mama Adé', country: 'NG', avatar: 'sunny-tortoise' });
@@ -63,7 +64,8 @@ export default function ProfilePage() {
           <ProgressRing value={68} label="XP" />
           <p className="text-lg text-ink/70">Total XP: 1,250</p>
           <Chip tone="accent" size="md">
-            🔥 12-day streak
+            <Icon name="star" size={16} color="var(--on-accent)" className="shrink-0" aria-hidden />
+            12-day streak
           </Chip>
         </Card>
       </section>

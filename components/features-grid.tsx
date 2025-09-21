@@ -1,15 +1,20 @@
 import { FeatureCard } from '@/components/feature-card';
+import type { IconName } from '@/components/icons/icons';
 
-const features = [
+const features: Array<{ icon: IconName; title: string; body: string }> = [
   {
-    icon: '😊',
+    icon: 'kids',
     title: 'Cartoon Guides',
     body: 'Meet Funmiláyọ̀, Ọládélé, and friends—your cheerful guides through greetings, numbers, and proverbs.',
   },
-  { icon: '🔊', title: 'Tap-to-Hear', body: 'Hear perfect tones. Practice with a tap.' },
-  { icon: '🎤', title: 'Voice Challenges', body: 'Record yourself. Get instant feedback.' },
-  { icon: '🌞', title: 'Culture Spotlight', body: 'Proverbs, songs, and celebrations woven into every module.' },
-  { icon: '💬', title: 'WhatsApp Easy-Teach', body: 'Teachers upload lessons by sending a voice note. Ìlọ̀ does the rest.' },
+  { icon: 'practice', title: 'Tap-to-Hear', body: 'Hear perfect tones. Practice with a tap.' },
+  { icon: 'mic', title: 'Voice Challenges', body: 'Record yourself. Get instant feedback.' },
+  { icon: 'globe', title: 'Culture Spotlight', body: 'Proverbs, songs, and celebrations woven into every module.' },
+  {
+    icon: 'mail',
+    title: 'WhatsApp Easy-Teach',
+    body: 'Teachers upload lessons by sending a voice note. Ìlọ̀ does the rest.',
+  },
 ];
 
 export default function FeaturesGrid() {

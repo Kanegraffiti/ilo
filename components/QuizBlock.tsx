@@ -64,7 +64,7 @@ export function QuizBlock({ items, className, onComplete }: QuizBlockProps) {
     setSubmitted(true);
     onComplete?.(calculatedScore);
     push({
-      title: calculatedScore === 100 ? 'Fantastìkì! 🎉' : 'Ìdáhùn rẹ̀ ti dé',
+      title: calculatedScore === 100 ? 'Fantastìkì!' : 'Ìdáhùn rẹ̀ ti dé',
       description:
         calculatedScore === 100
           ? 'O ṣe aṣeyọrí pipe — ẹ̀ kí o!'
@@ -157,7 +157,7 @@ export function QuizBlock({ items, className, onComplete }: QuizBlockProps) {
                     id={`${idPrefix}-${item.id}-input`}
                     value={responses[item.id] ?? ''}
                     onChange={(event) => handleSelect(item.id, event.target.value)}
-                    helperText={submitted ? (feedback ? 'Ìbáṣepọ̀! 🎉' : 'Ṣe àtúnṣe kí o ṣàṣeyọrí.') : item.hint}
+                    helperText={submitted ? (feedback ? 'Ìbáṣepọ̀!' : 'Ṣe àtúnṣe kí o ṣàṣeyọrí.') : item.hint}
                     aria-describedby={submitted ? `${idPrefix}-${item.id}-feedback` : undefined}
                   />
                   <ToneKeypad targetId={`${idPrefix}-${item.id}-input`} />

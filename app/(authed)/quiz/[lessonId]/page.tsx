@@ -64,7 +64,7 @@ export default function QuizPage({ params }: { params: { lessonId: string } }) {
           onComplete={(score) => {
             if (!lesson) return;
             if (score === 100) {
-              push({ title: '🎉 Perfect score!', description: 'Your answers are all correct.', tone: 'success' });
+              push({ title: 'Perfect score!', description: 'Your answers are all correct.', tone: 'success' });
             } else {
               push({ title: 'Nice work!', description: `You scored ${score}%. Keep practicing.`, tone: 'info' });
             }

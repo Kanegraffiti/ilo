@@ -200,7 +200,7 @@ export function AudioRecorder({ lessonId, onSubmit, className }: AudioRecorderPr
       await queueRecording(entry);
       await refreshQueuedCount();
       push({
-        title: '📶 Saved offline — will upload when online.',
+        title: 'Saved offline — will upload when online.',
         description: 'We’ll send your practice as soon as you’re connected.',
         tone: 'info',
       });
@@ -216,7 +216,7 @@ export function AudioRecorder({ lessonId, onSubmit, className }: AudioRecorderPr
       setSubmitting(true);
       await onSubmit(recordedBlob);
       push({
-        title: 'Great effort! 🎧',
+        title: 'Great effort!',
         description: 'Your pronunciation is on its way to your mentor.',
         tone: 'success',
       });

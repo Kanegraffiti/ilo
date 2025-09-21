@@ -1,3 +1,4 @@
+import type { IconName } from '@/components/icons/icons';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export type FooterRouteKind =
@@ -12,7 +13,7 @@ export type FooterRouteKind =
 export type FooterModel = {
   greeting: string;
   routeKind: FooterRouteKind;
-  primaryCta?: { href: string; label: string; icon?: string };
+  primaryCta?: { href: string; label: string; icon?: IconName };
   secondaryLinks: { href: string; label: string }[];
   funFact?: { id: string; title: string; teaser: string; href: string };
   nextLesson?: { id: string; title: string; href: string } | null;
@@ -263,13 +264,13 @@ export async function getFooterModel({
   let primaryCta: FooterModel['primaryCta'];
   switch (routeKind) {
     case 'landing':
-      primaryCta = { href: '/auth/signup', label: 'Get started', icon: '✨' };
+      primaryCta = { href: '/auth/signup', label: 'Get started', icon: 'star' };
       break;
     case 'lesson':
       primaryCta = {
         href: progress?.currentLessonId ? `/practice/${progress.currentLessonId}` : '/practice/intro',
         label: 'Keep practicing',
-        icon: '🎧',
+        icon: 'practice',
       };
       break;
     case 'practice':
@@ -277,36 +278,36 @@ export async function getFooterModel({
         primaryCta = {
           href: progress.currentLessonId ? `/quiz/${progress.currentLessonId}` : '/quiz/intro',
           label: 'Review mistakes',
-          icon: '🔍',
+          icon: 'lesson',
         };
       } else if (progress?.currentLessonId) {
         primaryCta = {
           href: `/practice/${progress.currentLessonId}`,
           label: 'Record again',
-          icon: '🎙️',
+          icon: 'mic',
         };
       } else {
-        primaryCta = { href: '/quiz/intro', label: 'Try a quiz', icon: '🎯' };
+        primaryCta = { href: '/quiz/intro', label: 'Try a quiz', icon: 'play' };
       }
       break;
     case 'leaderboard':
       primaryCta = {
         href: progress?.currentLessonId ? `/practice/${progress.currentLessonId}` : '/practice/intro',
         label: 'Practice now',
-        icon: '💪',
+        icon: 'leaderboard',
       };
       break;
     case 'profile':
     case 'kids':
       if (childName) {
-        primaryCta = { href: '/kids', label: 'Switch child', icon: '🧒' };
+        primaryCta = { href: '/kids', label: 'Switch child', icon: 'kids' };
       } else {
-        primaryCta = { href: '/kids', label: 'Add child profile', icon: '➕' };
+        primaryCta = { href: '/kids', label: 'Add child profile', icon: 'profile' };
       }
       break;
     case 'generic':
     default:
-      primaryCta = { href: '/lessons/intro', label: 'Explore lessons', icon: '🧭' };
+      primaryCta = { href: '/lessons/intro', label: 'Explore lessons', icon: 'books' };
       break;
   }
 
