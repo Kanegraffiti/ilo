@@ -5,10 +5,11 @@ import { Card } from '@/components/ui/Card';
 import { Chip } from '@/components/ui/Chip';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useToast } from '@/components/ui/Toast';
 import { usePageEnter } from '@/lib/anim';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 
 const FAQ = [
   {
@@ -28,8 +29,17 @@ const FAQ = [
 export default function HelpPage() {
   const { push } = useToast();
   const pageMotion = usePageEnter();
-  const [formState, setFormState] = useState({ name: '', email: '', topic: 'support', message: '' });
+  const searchParams = useSearchParams();
+  const preferredTopic = useMemo(() => {
+    const topic = searchParams.get('topic');
+    return topic === 'support' || topic === 'curriculum' || topic === 'teacher' ? topic : 'support';
+  }, [searchParams]);
+  const [formState, setFormState] = useState({ name: '', email: '', topic: preferredTopic, message: '' });
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    setFormState((prev) => ({ ...prev, topic: preferredTopic }));
+  }, [preferredTopic]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,7 +51,7 @@ export default function HelpPage() {
       tone: 'success',
     });
     setSubmitting(false);
-    setFormState({ name: '', email: '', topic: 'support', message: '' });
+    setFormState({ name: '', email: '', topic: preferredTopic, message: '' });
   };
 
   return (

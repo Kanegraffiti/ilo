@@ -4,6 +4,7 @@ import React from 'react';
 import { headers } from 'next/headers';
 import { Noto_Sans, Noto_Serif } from 'next/font/google';
 import { ToastProvider, ToastViewport } from '@/components/ui/Toast';
+import FloatingAssistant from '@/components/floating-assistant';
 
 const sans = Noto_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 const serif = Noto_Serif({ subsets: ['latin'], variable: '--font-serif', display: 'swap' });
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ToastProvider>
           {children}
           <ToastViewport />
+          <FloatingAssistant />
         </ToastProvider>
       </body>
     </html>
