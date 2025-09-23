@@ -8,8 +8,10 @@
     "build": "pnpm vercel-check && next build",
     "start": "next start",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "seed": "ts-node scripts/seed.ts",
-    "test": "playwright test"
+    "test": "playwright test",
+    "lhci": "lhci autorun"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.38.0",
@@ -31,6 +33,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.12.0",
     "@playwright/test": "^1.40.0",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
