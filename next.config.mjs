@@ -8,6 +8,15 @@ const nextConfig = {
     ],
   },
   experimental: { optimizeCss: true },
+  webpack: (config) => {
+    config.resolve = config.resolve ?? {};
+    config.resolve.alias = {
+      ...(config.resolve.alias ?? {}),
+      'onnxruntime-node': false,
+      sharp: false,
+    };
+    return config;
+  },
 };
 
 export default nextConfig;

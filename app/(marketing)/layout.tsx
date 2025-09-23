@@ -2,7 +2,6 @@
 import NavBar from '@/components/navbar';
 import Footer from '@/components/footer';
 import CookieBanner from '@/components/cookie-banner';
-import FloatingWhatsApp from '@/components/floating-whatsapp';
 import { useAnalytics } from '@/lib/analytics';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
@@ -13,7 +12,6 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <main className="pt-24">{children}</main>
       <Footer />
       <CookieBanner />
-      <FloatingWhatsApp />
     </>
   );
 }

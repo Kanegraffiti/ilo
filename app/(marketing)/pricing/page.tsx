@@ -10,6 +10,7 @@ const tiers = [
     price: '₦0',
     description: '1 free module, basic quizzes',
     cta: 'Start free',
+    href: '/auth/signup',
   },
   {
     name: 'Teacher Pro',
@@ -17,12 +18,14 @@ const tiers = [
     description: 'WhatsApp uploader, dashboard, certificates',
     popular: true,
     cta: 'Enroll',
+    href: '/help?topic=teacher',
   },
   {
     name: 'Schools',
     price: 'Contact us',
     description: 'Roster sync, reports, onboarding',
     cta: 'Contact',
+    href: '/help?topic=curriculum',
   },
 ];
 
@@ -37,7 +40,7 @@ export default function PricingPage() {
             <h3 className="font-semibold text-xl mb-2">{t.name}</h3>
             <p className="text-2xl mb-2">{t.price}</p>
             <p className="mb-4 text-sm">{t.description}</p>
-            <Button>{t.cta}</Button>
+            <Button href={t.href}>{t.cta}</Button>
           </Card>
         ))}
       </div>
