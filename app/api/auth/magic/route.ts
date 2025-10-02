@@ -1,3 +1,4 @@
+import { readEnv } from '@/lib/env';
 import { rateLimit } from '@/lib/rateLimit';
 import { emailSchema } from '@/lib/zodSchemas';
 import { createClient } from '@supabase/supabase-js';
@@ -28,8 +29,8 @@ export async function POST(req: Request) {
     );
   }
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const supabaseUrl = readEnv('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL');
+  const supabaseAnonKey = readEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY', 'SUPABASE_ANON_KEY');
   if (!supabaseUrl || !supabaseAnonKey) {
     console.error('Missing Supabase environment variables for magic link route.');
     return Response.json({ ok: false, message: 'Sign-in is unavailable right now.' }, { status: 500 });

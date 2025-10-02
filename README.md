@@ -33,6 +33,7 @@ Tailwind color tokens are defined in `tailwind.config.js` and backed by CSS vari
    - `NEXT_PUBLIC_BASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY` (server only, never exposed to the client)
    - `NEXT_TELEMETRY_DISABLED=1` *(optional)*
+     - If you only have `SUPABASE_URL` / `SUPABASE_ANON_KEY` from an integration, the app will automatically fall back to those names.
 2. Build settings:
    - Install Command: `pnpm install --frozen-lockfile`
    - Build Command: `pnpm build`
