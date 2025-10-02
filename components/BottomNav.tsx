@@ -39,7 +39,7 @@ export function BottomNav({ items = DEFAULT_ITEMS, className }: BottomNavProps) 
       )}
       aria-label="Primary"
     >
-      <ul className="grid grid-cols-5">
+      <ul className="grid grid-flow-col auto-cols-fr">
         {items.map((item) => {
           const isActive = pathname?.startsWith(item.href);
           return (
