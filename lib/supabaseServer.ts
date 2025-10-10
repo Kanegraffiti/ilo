@@ -1,10 +1,11 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
+import { ensureEnv } from './env';
 
-let client: SupabaseClient | null = null;
-
-export const supabaseServer = () => {
-  if (!client) {
-    client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+export const supabaseServer = () =>
+  createClient(
+    ensureEnv('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL'),
+    ensureEnv('SUPABASE_SERVICE_ROLE_KEY'),
+    {
       auth: { persistSession: false },
     });
   }

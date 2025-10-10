@@ -1,17 +1,11 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
+import { ensureEnv } from './env';
 
-let browserClient: SupabaseClient | null = null;
-
-export const supabaseBrowser = () => {
-  if (!browserClient) {
-    browserClient = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        auth: { persistSession: true },
-      },
-    );
-  }
-
-  return browserClient;
-};
+export const supabaseBrowser = () =>
+  createClient(
+    ensureEnv('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL'),
+    ensureEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY', 'SUPABASE_ANON_KEY'),
+    {
+      auth: { persistSession: true },
+    }
+  );

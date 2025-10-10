@@ -1,8 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 import 'dotenv/config';
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+import { ensureEnv } from '@/lib/env';
+
+const url = ensureEnv('NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_URL');
+const key = ensureEnv('SUPABASE_SERVICE_ROLE_KEY');
 const supabase = createClient(url, key);
 
 async function run() {
