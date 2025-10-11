@@ -210,7 +210,14 @@ export function TeacherLessonForm({ lessonId, initialValues, submitLabel = 'Save
               onChange={(event) => setObjectiveDraft(event.target.value)}
               placeholder="Build confidence"
             />
-            <Button type="button" variant="secondary" onClick={handleAddObjective} iconLeft={<Plus className="h-4 w-4" />}>Add</Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={handleAddObjective}
+              leadingIcon={<Plus className="h-4 w-4" />}
+            >
+              Add
+            </Button>
           </div>
         </header>
         <div className="flex flex-wrap gap-2">
@@ -270,7 +277,7 @@ export function TeacherLessonForm({ lessonId, initialValues, submitLabel = 'Save
             variant="secondary"
             size="sm"
             onClick={addVocabRow}
-            iconLeft={<Plus className="h-4 w-4" aria-hidden="true" />}
+            leadingIcon={<Plus className="h-4 w-4" aria-hidden="true" />}
           >
             Add row
           </Button>
@@ -351,7 +358,11 @@ export function TeacherLessonForm({ lessonId, initialValues, submitLabel = 'Save
       {message ? <p className="rounded-2xl bg-success/10 px-4 py-3 text-sm font-semibold text-success">{message}</p> : null}
 
       <div className="flex items-center justify-end gap-3">
-        <Button type="submit" disabled={isPending} iconLeft={isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : undefined}>
+        <Button
+          type="submit"
+          disabled={isPending}
+          leadingIcon={isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : undefined}
+        >
           {submitLabel}
         </Button>
       </div>
@@ -361,7 +372,8 @@ export function TeacherLessonForm({ lessonId, initialValues, submitLabel = 'Save
 
 function markdownToHtml(markdown: string): string {
   try {
-    return marked.parse(markdown ?? '', { mangle: false, headerIds: false }) as string;
+    const html = marked.parse(markdown ?? '');
+    return typeof html === 'string' ? html : '';
   } catch (error) {
     console.error('Markdown render error', error);
     return markdown.replace(/\n/g, '<br />');

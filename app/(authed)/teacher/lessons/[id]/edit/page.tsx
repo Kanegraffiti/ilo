@@ -43,7 +43,9 @@ export default function TeacherLessonEditPage({ params }: { params: { id: string
           title: data.title,
           status: (data.status ?? 'Draft').toLowerCase() === 'published' ? 'published' : 'draft',
           moduleId: data.module_id ?? undefined,
-          moduleTitle: data.modules?.title ?? undefined,
+          moduleTitle: Array.isArray(data.modules)
+            ? data.modules[0]?.title ?? undefined
+            : (data.modules as { title?: string } | null | undefined)?.title ?? undefined,
           objectives: Array.isArray(data.objectives) ? data.objectives : [],
           notesMd: data.notes_md ?? '',
           vocab: (data.vocab ?? []).map((item: any) => ({ term: item.term, translation: item.meaning })),

@@ -54,16 +54,16 @@ function getLesson(id: string) {
   return LESSONS.find((lesson) => lesson.id === id);
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const lesson = getLesson(params.id);
+export async function generateMetadata({ params }: { params: { lessonId: string } }): Promise<Metadata> {
+  const lesson = getLesson(params.lessonId);
   if (!lesson) {
     return { title: 'Lesson not found · Ìlọ̀' };
   }
   return { title: `${lesson.title} · Ìlọ̀` };
 }
 
-export default function LessonPage({ params }: { params: { id: string } }) {
-  const lesson = getLesson(params.id);
+export default function LessonPage({ params }: { params: { lessonId: string } }) {
+  const lesson = getLesson(params.lessonId);
   if (!lesson) {
     notFound();
   }
