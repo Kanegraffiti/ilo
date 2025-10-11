@@ -32,11 +32,14 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
               <Link href="/facts" className="hover:text-primary focus-visible:underline">
                 Fun facts
               </Link>
-              <Link href="/install" className="hover:text-primary focus-visible:underline">
-                Install
+              <Link href="/characters" className="hover:text-primary focus-visible:underline">
+                Characters
               </Link>
               <Link href="/help" className="hover:text-primary focus-visible:underline">
                 Help
+              </Link>
+              <Link href="/install" className="hover:text-primary focus-visible:underline">
+                Install
               </Link>
             </nav>
             <div className="flex items-center gap-3">
