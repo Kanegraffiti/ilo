@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+
 import { ensureEnv } from './env';
 
 export const supabaseServer = () =>
@@ -7,11 +8,8 @@ export const supabaseServer = () =>
     ensureEnv('SUPABASE_SERVICE_ROLE_KEY'),
     {
       auth: { persistSession: false },
-    });
-  }
-
-  return client;
-};
+    },
+  );
 
 export async function getUserFromRequest(req: Request) {
   const authHeader = req.headers.get('authorization') ?? req.headers.get('x-supabase-auth');
