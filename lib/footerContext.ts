@@ -81,7 +81,8 @@ export function detectRouteKind(pathname: string): FooterRouteKind {
     normalized.startsWith('/landing') ||
     normalized.startsWith('/auth') ||
     normalized.startsWith('/install') ||
-    normalized.startsWith('/facts')
+    normalized.startsWith('/facts') ||
+    normalized.startsWith('/characters')
   ) {
     return 'landing';
   }
@@ -255,6 +256,8 @@ export async function getFooterModel({
     { href: '/lessons/intro', label: 'Lessons' },
     { href: '/practice/intro', label: 'Practice' },
     { href: '/leaderboards', label: 'Leaderboard' },
+    { href: '/facts', label: 'Fun facts' },
+    { href: '/characters', label: 'Characters' },
     { href: '/help', label: 'Help' },
   ];
   if (showInstallHint) {
