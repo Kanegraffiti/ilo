@@ -120,15 +120,15 @@ export default function LandingPage() {
 
   return (
     <motion.div {...pageMotion} className="space-y-20 bg-paper c-on-paper pb-20">
-      <section className="relative overflow-hidden rounded-b-[3rem] bg-gradient-to-br from-[#fff7db] via-[#ffe3f9] to-[#dffff3]">
+      <section className="relative overflow-hidden rounded-b-[3rem] bg-gradient-to-br from-[var(--hero-bg-from)] via-[var(--hero-bg-via)] to-[var(--hero-bg-to)]">
         <div className="absolute inset-0" aria-hidden>
           <motion.div
-            className="absolute -top-32 left-12 h-64 w-64 rounded-full bg-white/60 blur-[120px]"
+            className="absolute -top-32 left-12 h-64 w-64 rounded-full bg-[var(--hero-glow-1)] blur-[120px]"
             animate={reduced ? undefined : { y: [0, 12, -8, 0] }}
             transition={reduced ? undefined : { duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[#ffacf8]/50 blur-[140px]"
+            className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[var(--hero-glow-2)] blur-[140px]"
             animate={reduced ? undefined : { x: [0, -20, 10, 0] }}
             transition={reduced ? undefined : { duration: 14, repeat: Infinity, ease: 'easeInOut' }}
           />
@@ -170,18 +170,18 @@ export default function LandingPage() {
               description="Colorful cards show today’s quests, encouraging motions, and gentle reminders."
             />
             <motion.div
-              className="absolute -bottom-6 left-8 rounded-2xl bg-white/80 px-4 py-3 text-sm font-semibold text-black shadow-lg"
+              className="absolute -bottom-6 left-8 rounded-2xl bg-[var(--hero-note-bg)] px-4 py-3 text-sm font-semibold text-[var(--hero-note-color)] shadow-lg"
               animate={reduced ? undefined : { y: [0, -6, 0] }}
               transition={reduced ? undefined : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             >
               “Ẹ ṣe! New badge unlocked.”
             </motion.div>
             <motion.div
-              className="absolute -top-6 right-6 flex items-center gap-2 rounded-2xl bg-white/80 px-4 py-2 text-sm font-semibold text-black shadow-lg"
+              className="absolute -top-6 right-6 flex items-center gap-2 rounded-2xl bg-[var(--hero-note-bg)] px-4 py-2 text-sm font-semibold text-[var(--hero-note-color)] shadow-lg"
               animate={reduced ? undefined : { y: [0, 6, 0] }}
               transition={reduced ? undefined : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <Icon name="mic" size={18} color="#111827" aria-hidden className="shrink-0" />
+              <Icon name="mic" size={18} color="var(--hero-note-color)" aria-hidden className="shrink-0" />
               Live firefly lesson
             </motion.div>
           </div>
