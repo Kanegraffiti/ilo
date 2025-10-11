@@ -2,6 +2,7 @@
 
 import Icon from '@/components/icons/Icon';
 import type { IconName } from '@/components/icons/icons';
+import { AnimatedMascots } from '@/components/animated-mascots';
 import { FeatureCard } from '@/components/feature-card';
 import { PlaceholderImage } from '@/components/placeholder-image';
 import { Button } from '@/components/ui/Button';
@@ -169,6 +170,7 @@ export default function LandingPage() {
               label="Kid explorer dashboard"
               description="Colorful cards show today’s quests, encouraging motions, and gentle reminders."
             />
+            <AnimatedMascots className="absolute inset-0" />
             <motion.div
               className="absolute -bottom-6 left-8 rounded-2xl bg-[var(--hero-note-bg)] px-4 py-3 text-sm font-semibold text-[var(--hero-note-color)] shadow-lg"
               animate={reduced ? undefined : { y: [0, -6, 0] }}

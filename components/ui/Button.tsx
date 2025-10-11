@@ -24,10 +24,10 @@ export const buttonVariants = cva(baseStyles, {
         'bg-red-600 text-white hover:bg-red-600 focus-visible:ring-red-500 disabled:pointer-events-none disabled:opacity-60',
     },
     size: {
-      sm: 'px-3 py-2 text-base',
-      md: 'px-4 py-2.5 text-lg',
-      lg: 'px-5 py-3 text-xl',
-      xl: 'px-6 py-4 text-2xl',
+      sm: 'px-4 py-2.5 text-base',
+      md: 'px-5 py-3 text-lg',
+      lg: 'px-6 py-3 text-lg sm:px-7 sm:py-3.5 sm:text-xl',
+      xl: 'px-7 py-3.5 text-xl sm:px-8 sm:py-4 sm:text-2xl',
       icon: 'h-11 w-11 p-0 text-xl',
     },
     pulse: {

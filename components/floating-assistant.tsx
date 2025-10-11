@@ -178,7 +178,7 @@ export default function FloatingAssistant() {
           id="ilo-assistant"
           className="fixed bottom-24 right-4 z-50 w-[min(340px,calc(100vw-2rem))] animate-in fade-in zoom-in"
         >
-          <div className="overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-2xl">
+          <div className="overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface-1)] text-[color:var(--on-surface-1)] shadow-2xl">
             <header className="flex items-center justify-between bg-primary px-4 py-3 text-white">
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
@@ -198,7 +198,7 @@ export default function FloatingAssistant() {
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </header>
-            <div className="max-h-80 overflow-y-auto bg-white px-4 py-3 text-sm text-ink/90">
+            <div className="max-h-80 overflow-y-auto bg-[var(--surface-1)] px-4 py-3 text-sm text-[color:var(--on-surface-1)]">
               {messages.map((message, index) => (
                 <div
                   key={index}
@@ -209,7 +209,7 @@ export default function FloatingAssistant() {
                       'max-w-[85%] rounded-2xl px-3 py-2 shadow-sm',
                       message.role === 'user'
                         ? 'bg-primary/10 text-primary'
-                        : 'bg-cream text-ink',
+                        : 'bg-[var(--surface-2)] text-[color:var(--on-surface-1)]',
                     )}
                   >
                     <p>{message.content}</p>
@@ -217,8 +217,8 @@ export default function FloatingAssistant() {
                 </div>
               ))}
               {(modelLoading || loadingReply) && (
-                <div className="mb-3 flex justify-start text-ink/70">
-                  <div className="flex items-center gap-2 rounded-2xl bg-cream px-3 py-2 text-sm">
+                <div className="mb-3 flex justify-start text-[color:var(--on-surface-1)] opacity-80">
+                  <div className="flex items-center gap-2 rounded-2xl bg-[var(--surface-2)] px-3 py-2 text-sm text-[color:var(--on-surface-1)]">
                     <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                     <span>{modelLoading ? 'Ìrànlọ́wọ́ ń bọ̀…' : 'Ròyìn ìdáhùn…'}</span>
                   </div>
@@ -226,11 +226,11 @@ export default function FloatingAssistant() {
               )}
               <div ref={messagesEndRef} />
             </div>
-            <div className="border-t border-ink/10 bg-white px-4 py-3">
+            <div className="border-t border-[var(--border)] bg-[var(--surface-1)] px-4 py-3">
               {error ? (
                 <p className="mb-2 text-xs text-red-600">{error}</p>
               ) : (
-                <p className="mb-2 text-xs text-ink/50">Tip: {exampleHint}</p>
+                <p className="mb-2 text-xs text-[color:var(--on-surface-1)] opacity-70">Tip: {exampleHint}</p>
               )}
               <form className="flex items-end gap-2" onSubmit={(event) => void handleSubmit(event)}>
                 <label htmlFor="assistant-message" className="sr-only">
@@ -243,7 +243,7 @@ export default function FloatingAssistant() {
                   onChange={(event) => setInput(event.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Béèrè ohunkóhun…"
-                  className="min-h-[56px] flex-1 resize-none rounded-2xl border border-ink/10 bg-cream/60 px-3 py-2 text-sm text-ink shadow-inner focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="min-h-[56px] flex-1 resize-none rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-sm text-[color:var(--on-surface-1)] shadow-inner focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
                   aria-label="Message Ìrànlọ́wọ́"
                   disabled={modelLoading}
                 />
