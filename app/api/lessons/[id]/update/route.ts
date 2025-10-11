@@ -110,7 +110,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
       const { data: signed, error: signedError } = await supabase
         .storage
         .from(MEDIA_BUCKET)
-        .createSignedUploadUrl(path, 60 * 5);
+        .createSignedUploadUrl(path);
       if (signedError || !signed) {
         console.error('Signed upload error', signedError?.message);
         continue;
