@@ -4,6 +4,7 @@ import Icon from '@/components/icons/Icon';
 import type { IconName } from '@/components/icons/icons';
 import { AnimatedMascots } from '@/components/animated-mascots';
 import { FeatureCard } from '@/components/feature-card';
+import { FloatingCutout } from '@/components/floating-cutout';
 import { PlaceholderImage } from '@/components/placeholder-image';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -121,7 +122,7 @@ export default function LandingPage() {
 
   return (
     <motion.div {...pageMotion} className="space-y-20 bg-paper c-on-paper pb-20">
-      <section className="relative overflow-hidden rounded-b-[3rem] bg-gradient-to-br from-[var(--hero-bg-from)] via-[var(--hero-bg-via)] to-[var(--hero-bg-to)]">
+      <section className="relative overflow-hidden rounded-b-[3rem] border-b border-[var(--border)] bg-gradient-to-br from-[var(--hero-bg-from)] via-[var(--hero-bg-via)] to-[var(--hero-bg-to)]">
         <div className="absolute inset-0" aria-hidden>
           <motion.div
             className="absolute -top-32 left-12 h-64 w-64 rounded-full bg-[var(--hero-glow-1)] blur-[120px]"
@@ -188,9 +189,20 @@ export default function LandingPage() {
             </motion.div>
           </div>
         </div>
+        <FloatingCutout
+          src="/images/1760207319347.png"
+          alt="Cheerful character with a trophy"
+          className="absolute -bottom-28 right-6 hidden xl:block"
+          size="md"
+          floatDirection="down"
+          floatIntensity={18}
+          rotate={4}
+          delay={0.6}
+          ariaHidden
+        />
       </section>
 
-      <section className="bg-paper c-on-paper px-4">
+      <section className="relative bg-paper c-on-paper px-4">
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="max-w-2xl space-y-3">
             <h2 className="font-title text-3xl text-[var(--on-paper)] md:text-4xl">Designed for today’s playful learners</h2>
@@ -206,6 +218,26 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
+        <FloatingCutout
+          src="/images/1760206474049.png"
+          alt="Character holding sparkles"
+          className="absolute -top-16 left-[6%] hidden lg:block"
+          size="sm"
+          floatIntensity={16}
+          rotate={7}
+          ariaHidden
+        />
+        <FloatingCutout
+          src="/images/1760205755825.png"
+          alt="Character peeking from the side"
+          className="absolute -bottom-24 right-[8%] hidden xl:block"
+          size="md"
+          floatDirection="down"
+          floatIntensity={20}
+          rotate={5}
+          delay={0.4}
+          ariaHidden
+        />
       </section>
 
       <section className="mx-auto max-w-6xl px-4">
@@ -262,6 +294,15 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
+        <FloatingCutout
+          src="/images/1760205862949.png"
+          alt="Character riding a rocket pencil"
+          className="absolute left-[8%] top-6 hidden 2xl:block"
+          size="lg"
+          floatIntensity={18}
+          rotate={6}
+          ariaHidden
+        />
       </section>
 
       <section className="mx-auto max-w-6xl space-y-6 px-4">
@@ -299,6 +340,17 @@ export default function LandingPage() {
             </Card>
           ))}
         </div>
+        <FloatingCutout
+          src="/images/Ade.png"
+          alt="Ade celebrating progress"
+          className="absolute -right-10 top-10 hidden lg:block"
+          size="sm"
+          floatDirection="down"
+          floatIntensity={14}
+          rotate={4}
+          delay={0.2}
+          ariaHidden
+        />
       </section>
 
       <section id="faq" className="bg-paper c-on-paper px-4 pb-16">
