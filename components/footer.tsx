@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { LucideIcon } from 'lucide-react';
+import { Instagram, Linkedin, Mail, MessageCircle, Twitter, Youtube } from 'lucide-react';
 
 type FooterLink = {
   label: string;
@@ -10,6 +12,13 @@ type FooterLink = {
 type FooterSection = {
   heading: string;
   links: FooterLink[];
+};
+
+type SocialLink = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+  external?: boolean;
 };
 
 const SECTIONS: FooterSection[] = [
@@ -32,10 +41,48 @@ const SECTIONS: FooterSection[] = [
   {
     heading: 'Connect',
     links: [
-      { label: 'WhatsApp', href: 'https://wa.me/2348104024943', external: true },
-      { label: 'Instagram', href: 'https://instagram.com', external: true },
-      { label: 'Twitter', href: 'https://twitter.com', external: true },
+      { label: 'Community', href: 'https://discord.gg/ilonigeria', external: true },
+      { label: 'Ambassadors', href: '/ambassadors' },
+      { label: 'Press kit', href: '/press' },
     ],
+  },
+];
+
+const SOCIAL_LINKS: SocialLink[] = [
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com/ilo.app',
+    icon: Instagram,
+    external: true,
+  },
+  {
+    label: 'Twitter',
+    href: 'https://twitter.com/ilo_app',
+    icon: Twitter,
+    external: true,
+  },
+  {
+    label: 'YouTube',
+    href: 'https://youtube.com/@iloapp',
+    icon: Youtube,
+    external: true,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/ilo-app',
+    icon: Linkedin,
+    external: true,
+  },
+  {
+    label: 'WhatsApp',
+    href: 'https://wa.me/2348104024943',
+    icon: MessageCircle,
+    external: true,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:hello@ilo.africa',
+    icon: Mail,
   },
 ];
 
@@ -160,6 +207,19 @@ export default function Footer() {
             <p className="max-w-sm text-base text-ink/75">
               Playful Yorùbá learning that grows with every child. Stories, songs, and laughter lead the way.
             </p>
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              {SOCIAL_LINKS.map(({ label, href, icon: Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white/80 text-ink/70 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                  aria-label={label}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
             <SproutAccent />
           </div>
           {SECTIONS.map((section) => (
